@@ -84,7 +84,7 @@ class AgendaTableViewController: UITableViewController {
     //-- Helpers --//
     func setupTableView() {
         // Instantiate table view //
-        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .grouped)
+        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .plain)
         
         // Set delegates //
         self.agendaTableView.delegate = self
