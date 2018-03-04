@@ -11,6 +11,7 @@ import UIKit
 class AgendaTableViewController: UITableViewController {
     //-- Properties --//
     let appointmentManager = AppointmentManager()
+    let calendarManager = CalendarManager()
     var agendaTableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,8 +31,8 @@ class AgendaTableViewController: UITableViewController {
 
     //-- Table view data source --//
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Will use mock data for number of sections //
-        return 1
+        // There should be a section for every day in the calendar //
+        return self.calendarManager.sectionDays.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +48,39 @@ class AgendaTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Create header custom view //
+        let sectionView = UIView()
+    
+        // Create UILabel //
+        let dateLabel = UILabel()
+        dateLabel.frame = CGRect(x: 15, y: 0, width: screenSize.maxX, height: 24)
+        dateLabel.font = UIFont.systemFont(ofSize: 12)
+        
+        // Get string for section //
+        let sectionString = self.calendarManager.sectionDays[section]
+        
+        // If string contains Today, change font color/view bg //
+        if sectionString.range(of: "Today") != nil {
+            sectionView.backgroundColor = todaySectionBgColor
+            dateLabel.textColor = todaySectionTxtColor
+        } else {
+            sectionView.backgroundColor = disabledColor
+            dateLabel.textColor = textColor
+        }
+        
+        // Set dateLabel string //
+        dateLabel.text = sectionString
+        
+        // Add to subview //
+        sectionView.addSubview(dateLabel)
+        return sectionView
+    }
+    
     //-- Helpers --//
     func setupTableView() {
         // Instantiate table view //
@@ -56,8 +90,14 @@ class AgendaTableViewController: UITableViewController {
         self.agendaTableView.delegate = self
         self.agendaTableView.dataSource = self
         
+        // Do not show a footer //
+        self.agendaTableView.sectionFooterHeight = 0
+        
         // Register cell class //
         self.agendaTableView.register(AppointmentTableViewCell.self, forCellReuseIdentifier: "AppointmentCell")
+        
+        // Get section dates //
+        self.calendarManager.getEachDayForYear()
         
         // Add UITable to view //
         self.view.addSubview(self.agendaTableView)
