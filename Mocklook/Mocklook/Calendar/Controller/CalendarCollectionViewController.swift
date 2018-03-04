@@ -45,6 +45,26 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         return cell
     }
     
+    //-- UICollectionViewDelegate --//
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if indexPath.section == 0 {
+            if let weekdaysView = self.calenderCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "WeekDays", for: indexPath) as? WeekdaysCollectionReusableView {
+                return weekdaysView
+            }
+        }
+        
+        return UICollectionReusableView()
+     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSize(width: self.calenderCollectionView.frame.width, height: 4.0)
+        } else {
+            return CGSize.zero
+        }
+    }
+    
     //-- Helpers --//
     func setupCollectionView() {
         // Set layout for collection view //
@@ -52,6 +72,8 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         layout.itemSize = CGSize(width: screenSize.maxX / 7, height: screenSize.maxX / 7)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
+        layout.headerReferenceSize = CGSize(width: screenSize.width, height: 4.0)
+        layout.sectionHeadersPinToVisibleBounds = true
         self.calenderCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenSize.maxX, height: screenSize.maxY / 3), collectionViewLayout: layout)
         self.calenderCollectionView.backgroundColor = UIColor.white
         
@@ -66,24 +88,17 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         // Register cell class //
         self.calenderCollectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: "DayCell")
         
-        // Register separator class //
-        self.calenderCollectionView.register(SectionCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Separator")
+        // Register header class //
+        self.calenderCollectionView.register(WeekdaysCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "WeekDays")
         
         // Add to subview //
         self.view.addSubview(self.calenderCollectionView)
         print("Collection view controller setup.")
     }
     
-    /* override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let sectionSeparator = self.calenderCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Separator", for: indexPath) as? SectionCollectionReusableView {
-            sectionSeparator.separator.backgroundColor = separatorColor
-            return sectionSeparator
-        }
-        
-        return UICollectionReusableView()
-    } */
-
-    //-- UICollectionViewDelegate --//
+    
+    
+    
     /*
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {

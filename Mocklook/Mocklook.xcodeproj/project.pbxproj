@@ -18,7 +18,7 @@
 		DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */; };
 		DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */; };
 		DDF339AA204B91ED007E7CCD /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */; };
-		DDF339AC204BA4D1007E7CCD /* SectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339AB204BA4D1007E7CCD /* SectionCollectionReusableView.swift */; };
+		DDF339AC204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,7 @@
 		DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAgendaViewController.swift; sourceTree = "<group>"; };
 		DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewController.swift; sourceTree = "<group>"; };
 		DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		DDF339AB204BA4D1007E7CCD /* SectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollectionReusableView.swift; sourceTree = "<group>"; };
+		DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF3398F204B60D1007E7CCD /* CalendarManager.swift */,
-				DDF339AB204BA4D1007E7CCD /* SectionCollectionReusableView.swift */,
+				DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 				DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */,
 				DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */,
 				DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */,
-				DDF339AC204BA4D1007E7CCD /* SectionCollectionReusableView.swift in Sources */,
+				DDF339AC204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
