@@ -11,13 +11,18 @@ import UIKit
 class CalendarAgendaViewController: UIViewController {
     //-- Properties --//
     var calendar: CalendarCollectionViewController!
+    var agenda: AgendaTableViewController!
     var calendarManager: CalendarManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.calendarManager = CalendarManager()
+        
         print("Setting up calender view...")
         self.setupCalenderView()
+        
+        print("Setting up agenda view...")
+        self.setupAgendaView()
     }
     
     //-- Helpers --//
@@ -25,10 +30,18 @@ class CalendarAgendaViewController: UIViewController {
         self.calendar = CalendarCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         self.calendar.view.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height / 3)
         self.addChildViewController(self.calendar)
-        self.view.addSubview(calendar.calenderCollectionView)
+        self.view.addSubview(self.calendar.calenderCollectionView)
         
         // Scroll to current section //
         self.calendar.calenderCollectionView.scrollToItem(at: IndexPath.init(row: 0, section: self.calendarManager.currentMonth - 1), at: .top, animated: true)
+        print("Calender view setup.")
+    }
+    
+    func setupAgendaView() {
+        self.agenda = AgendaTableViewController()
+        self.agenda.view.frame = CGRect(x: 0, y: screenSize.height / 3, width: screenSize.width, height: screenSize.height - screenSize.height / 3)
+        self.addChildViewController(self.agenda)
+        self.view.addSubview(self.agenda.agendaTableView)
         print("Calender view setup.")
     }
     
