@@ -8,15 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33960204B506B007E7CCD /* AppDelegate.swift */; };
-		DDF33963204B506B007E7CCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33962204B506B007E7CCD /* ViewController.swift */; };
 		DDF33966204B506B007E7CCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF33964204B506B007E7CCD /* Main.storyboard */; };
 		DDF33968204B506B007E7CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF33967204B506B007E7CCD /* Assets.xcassets */; };
 		DDF3396B204B506B007E7CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF33969204B506B007E7CCD /* LaunchScreen.storyboard */; };
-		DDF33976204B506B007E7CCD /* MocklookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33975204B506B007E7CCD /* MocklookUITests.swift */; };
+		DDF33990204B60D1007E7CCD /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3398F204B60D1007E7CCD /* CalendarManager.swift */; };
+		DDF33999204B658C007E7CCD /* MocklookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33998204B658C007E7CCD /* MocklookTests.swift */; };
+		DDF339A0204B65DA007E7CCD /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3398F204B60D1007E7CCD /* CalendarManager.swift */; };
+		DDF339A2204B6D7E007E7CCD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A1204B6D7E007E7CCD /* Constants.swift */; };
+		DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */; };
+		DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */; };
+		DDF339AA204B91ED007E7CCD /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */; };
+		DDF339AC204BA4D1007E7CCD /* SectionCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339AB204BA4D1007E7CCD /* SectionCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DDF33972204B506B007E7CCD /* PBXContainerItemProxy */ = {
+		DDF3399B204B658C007E7CCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DDF33955204B506B007E7CCD /* Project object */;
 			proxyType = 1;
@@ -28,14 +34,19 @@
 /* Begin PBXFileReference section */
 		DDF3395D204B506B007E7CCD /* Mocklook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocklook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF33960204B506B007E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DDF33962204B506B007E7CCD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DDF33965204B506B007E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDF33967204B506B007E7CCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF3396A204B506B007E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDF3396C204B506B007E7CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDF33971204B506B007E7CCD /* MocklookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MocklookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDF33975204B506B007E7CCD /* MocklookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocklookUITests.swift; sourceTree = "<group>"; };
-		DDF33977204B506B007E7CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDF3398F204B60D1007E7CCD /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		DDF33996204B658C007E7CCD /* MocklookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MocklookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF33998204B658C007E7CCD /* MocklookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocklookTests.swift; sourceTree = "<group>"; };
+		DDF3399A204B658C007E7CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDF339A1204B6D7E007E7CCD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAgendaViewController.swift; sourceTree = "<group>"; };
+		DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewController.swift; sourceTree = "<group>"; };
+		DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDF339AB204BA4D1007E7CCD /* SectionCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +57,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDF3396E204B506B007E7CCD /* Frameworks */ = {
+		DDF33993204B658C007E7CCD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF3395F204B506B007E7CCD /* Mocklook */,
-				DDF33974204B506B007E7CCD /* MocklookUITests */,
+				DDF33997204B658C007E7CCD /* MocklookTests */,
 				DDF3395E204B506B007E7CCD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF3395D204B506B007E7CCD /* Mocklook.app */,
-				DDF33971204B506B007E7CCD /* MocklookUITests.xctest */,
+				DDF33996204B658C007E7CCD /* MocklookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,8 +88,10 @@
 		DDF3395F204B506B007E7CCD /* Mocklook */ = {
 			isa = PBXGroup;
 			children = (
+				DDF339A3204B7111007E7CCD /* CalenderAgenda */,
+				DDF33980204B526F007E7CCD /* Calendar */,
 				DDF33960204B506B007E7CCD /* AppDelegate.swift */,
-				DDF33962204B506B007E7CCD /* ViewController.swift */,
+				DDF339A1204B6D7E007E7CCD /* Constants.swift */,
 				DDF33964204B506B007E7CCD /* Main.storyboard */,
 				DDF33967204B506B007E7CCD /* Assets.xcassets */,
 				DDF33969204B506B007E7CCD /* LaunchScreen.storyboard */,
@@ -87,13 +100,56 @@
 			path = Mocklook;
 			sourceTree = "<group>";
 		};
-		DDF33974204B506B007E7CCD /* MocklookUITests */ = {
+		DDF33980204B526F007E7CCD /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				DDF33975204B506B007E7CCD /* MocklookUITests.swift */,
-				DDF33977204B506B007E7CCD /* Info.plist */,
+				DDF33984204B543F007E7CCD /* Controller */,
+				DDF3398E204B60C1007E7CCD /* Helpers */,
 			);
-			path = MocklookUITests;
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		DDF33984204B543F007E7CCD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */,
+				DDF339A8204B91E4007E7CCD /* Cell */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DDF3398E204B60C1007E7CCD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DDF3398F204B60D1007E7CCD /* CalendarManager.swift */,
+				DDF339AB204BA4D1007E7CCD /* SectionCollectionReusableView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DDF33997204B658C007E7CCD /* MocklookTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDF33998204B658C007E7CCD /* MocklookTests.swift */,
+				DDF3399A204B658C007E7CCD /* Info.plist */,
+			);
+			path = MocklookTests;
+			sourceTree = "<group>";
+		};
+		DDF339A3204B7111007E7CCD /* CalenderAgenda */ = {
+			isa = PBXGroup;
+			children = (
+				DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */,
+			);
+			path = CalenderAgenda;
+			sourceTree = "<group>";
+		};
+		DDF339A8204B91E4007E7CCD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,23 +172,23 @@
 			productReference = DDF3395D204B506B007E7CCD /* Mocklook.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DDF33970204B506B007E7CCD /* MocklookUITests */ = {
+		DDF33995204B658C007E7CCD /* MocklookTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDF3397D204B506B007E7CCD /* Build configuration list for PBXNativeTarget "MocklookUITests" */;
+			buildConfigurationList = DDF3399D204B658C007E7CCD /* Build configuration list for PBXNativeTarget "MocklookTests" */;
 			buildPhases = (
-				DDF3396D204B506B007E7CCD /* Sources */,
-				DDF3396E204B506B007E7CCD /* Frameworks */,
-				DDF3396F204B506B007E7CCD /* Resources */,
+				DDF33992204B658C007E7CCD /* Sources */,
+				DDF33993204B658C007E7CCD /* Frameworks */,
+				DDF33994204B658C007E7CCD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DDF33973204B506B007E7CCD /* PBXTargetDependency */,
+				DDF3399C204B658C007E7CCD /* PBXTargetDependency */,
 			);
-			name = MocklookUITests;
-			productName = MocklookUITests;
-			productReference = DDF33971204B506B007E7CCD /* MocklookUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
+			name = MocklookTests;
+			productName = MocklookTests;
+			productReference = DDF33996204B658C007E7CCD /* MocklookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -148,7 +204,7 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
-					DDF33970204B506B007E7CCD = {
+					DDF33995204B658C007E7CCD = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DDF3395C204B506B007E7CCD;
@@ -169,7 +225,7 @@
 			projectRoot = "";
 			targets = (
 				DDF3395C204B506B007E7CCD /* Mocklook */,
-				DDF33970204B506B007E7CCD /* MocklookUITests */,
+				DDF33995204B658C007E7CCD /* MocklookTests */,
 			);
 		};
 /* End PBXProject section */
@@ -185,7 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDF3396F204B506B007E7CCD /* Resources */ = {
+		DDF33994204B658C007E7CCD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -199,26 +255,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDF33963204B506B007E7CCD /* ViewController.swift in Sources */,
+				DDF339AA204B91ED007E7CCD /* CalendarCollectionViewCell.swift in Sources */,
+				DDF33990204B60D1007E7CCD /* CalendarManager.swift in Sources */,
+				DDF339A2204B6D7E007E7CCD /* Constants.swift in Sources */,
+				DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */,
 				DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */,
+				DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */,
+				DDF339AC204BA4D1007E7CCD /* SectionCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDF3396D204B506B007E7CCD /* Sources */ = {
+		DDF33992204B658C007E7CCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDF33976204B506B007E7CCD /* MocklookUITests.swift in Sources */,
+				DDF33999204B658C007E7CCD /* MocklookTests.swift in Sources */,
+				DDF339A0204B65DA007E7CCD /* CalendarManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DDF33973204B506B007E7CCD /* PBXTargetDependency */ = {
+		DDF3399C204B658C007E7CCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DDF3395C204B506B007E7CCD /* Mocklook */;
-			targetProxy = DDF33972204B506B007E7CCD /* PBXContainerItemProxy */;
+			targetProxy = DDF3399B204B658C007E7CCD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -379,35 +441,35 @@
 			};
 			name = Release;
 		};
-		DDF3397E204B506B007E7CCD /* Debug */ = {
+		DDF3399E204B658C007E7CCD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3XYA9C7RBA;
-				INFOPLIST_FILE = MocklookUITests/Info.plist;
+				INFOPLIST_FILE = MocklookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = adilanchian.MocklookUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = adilanchian.MocklookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Mocklook;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mocklook.app/Mocklook";
 			};
 			name = Debug;
 		};
-		DDF3397F204B506B007E7CCD /* Release */ = {
+		DDF3399F204B658C007E7CCD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3XYA9C7RBA;
-				INFOPLIST_FILE = MocklookUITests/Info.plist;
+				INFOPLIST_FILE = MocklookTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = adilanchian.MocklookUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = adilanchian.MocklookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Mocklook;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mocklook.app/Mocklook";
 			};
 			name = Release;
 		};
@@ -432,11 +494,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDF3397D204B506B007E7CCD /* Build configuration list for PBXNativeTarget "MocklookUITests" */ = {
+		DDF3399D204B658C007E7CCD /* Build configuration list for PBXNativeTarget "MocklookTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DDF3397E204B506B007E7CCD /* Debug */,
-				DDF3397F204B506B007E7CCD /* Release */,
+				DDF3399E204B658C007E7CCD /* Debug */,
+				DDF3399F204B658C007E7CCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
