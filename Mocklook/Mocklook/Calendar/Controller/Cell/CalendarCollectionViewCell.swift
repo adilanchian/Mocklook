@@ -20,6 +20,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         label.text = ""
         return label
     }()
+    var isDisabled: Bool!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +40,9 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         // All cells before/after current date should be grayed out //
         if monthDayPath.section + 1 != currentMonth {
             self.backgroundColor = disabledColor
+            self.isDisabled = true
         } else {
+            self.isDisabled = false
             self.backgroundColor = UIColor.white
         }
         

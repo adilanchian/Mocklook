@@ -12,6 +12,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     //-- Properties --//
     var calendarManager: CalendarManager!
     var calenderCollectionView: UICollectionView!
+    var currentSelection: IndexPath!
     
     override func viewDidLoad() {
         print("Setting up collection view controller...")
@@ -23,6 +24,9 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         
         // Setup Collection View //
         self.setupCollectionView()
+        
+        // Set current selection //
+        self.currentSelection = IndexPath(item: self.calendarManager.currentDay - 1, section: self.calendarManager.currentMonth - 1)
     }
     
     //-- UICollectionViewDataSource --//

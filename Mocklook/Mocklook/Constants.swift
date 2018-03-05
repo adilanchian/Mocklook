@@ -17,6 +17,7 @@ let todaySectionBgColor = UIColor(red:0.96, green:0.98, blue:0.99, alpha:1.0)
 let todaySectionTxtColor = UIColor(red:0.00, green:0.46, blue:0.78, alpha:1.0)
 let availIndicatorColor = UIColor(red:0.18, green:0.80, blue:0.44, alpha:1.0)
 let pendingIndicatorColor = UIColor(red:0.90, green:0.49, blue:0.13, alpha:1.0)
+let calenderSelectedColor = UIColor(red:0.00, green:0.47, blue:0.85, alpha:0.5)
 
 //-- Device Screen Size --//
 let screenSize = UIScreen.main.bounds

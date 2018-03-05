@@ -25,6 +25,12 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         self.setupAgendaView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let selectedCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell
+        selectedCell?.backgroundColor = calenderSelectedColor
+        selectedCell?.dayLabel.textColor = UIColor.white
+    }
+    
     //-- Helpers --//
     func setupCalenderView() {
         self.calendar = CalendarCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -33,7 +39,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         self.view.addSubview(self.calendar.calenderCollectionView)
         
         // Scroll to current section //
-        self.calendar.calenderCollectionView.scrollToItem(at: IndexPath(row: 0, section: self.calendarManager.currentMonth - 1), at: .top, animated: true)
+        self.calendar.calenderCollectionView.scrollToItem(at: self.calendar.currentSelection, at: .centeredVertically, animated: true)
         print("Calender view setup.")
     }
     
@@ -62,6 +68,29 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
             return
         }
         
-        self.calendar.calenderCollectionView.scrollToItem(at: path, at: .top, animated: true)
+        // Remove background color on current selection //
+        if let currentCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell {
+            
+            // Change back to disabled color if cell was disabled //
+            if currentCell.isDisabled {
+               currentCell.backgroundColor = disabledColor
+            } else {
+                currentCell.backgroundColor = UIColor.white
+            }
+            
+            currentCell.dayLabel.textColor = grayTextColor
+        }
+        
+        // Center collection view vertically //
+        self.calendar.calenderCollectionView.scrollToItem(at: path, at: .centeredVertically, animated: true)
+        
+        // Set background view on new cell //
+        if let newCell = self.calendar.calenderCollectionView.cellForItem(at: path) as? CalendarCollectionViewCell {
+            newCell.backgroundColor = calenderSelectedColor
+            newCell.dayLabel.textColor = UIColor.white
+        }
+        
+        // Set currentSelection to new cell path //
+        self.calendar.currentSelection = path
     }
 }
