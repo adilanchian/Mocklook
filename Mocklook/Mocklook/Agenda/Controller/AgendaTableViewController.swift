@@ -117,6 +117,10 @@ class AgendaTableViewController: UITableViewController {
         self.agendaTableView.delegate = self
         self.agendaTableView.dataSource = self
         
+        // Remove scroll indicator //
+        self.agendaTableView.showsVerticalScrollIndicator = false
+        self.agendaTableView.showsHorizontalScrollIndicator = false
+        
         // Do not show a footer //
         self.agendaTableView.sectionFooterHeight = 0
         
