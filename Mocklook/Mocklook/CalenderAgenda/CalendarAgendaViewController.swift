@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalendarAgendaViewController: UIViewController {
+class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     //-- Properties --//
     var calendar: CalendarCollectionViewController!
     var agenda: AgendaTableViewController!
@@ -46,18 +46,22 @@ class CalendarAgendaViewController: UIViewController {
         // Scroll to current date section //
         self.agenda.agendaTableView.scrollToRow(at: IndexPath(item: 0, section: calendarManager.todayDateSection), at: .top, animated: true)
         
+        // Set delegate for DateSyncDelegate //
+        self.agenda.delegate = self
+        
         print("Calender view setup.")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //-- DateSyncDelegate --//
+    func changeCurrentCalendarDate(stringDate: String) {
+        print("[CalendarAgendaView] Received new date from Agenda: \(stringDate)")
+        
+        // Calculate what indexPath this corresponds to in the calendar //
+        guard let path = self.calendarManager.calculateCalendarPath(stringDate: stringDate) else {
+            print("[CalendarAgendaView] Generated index path came back nil. Returning.")
+            return
+        }
+        
+        self.calendar.calenderCollectionView.scrollToItem(at: path, at: .top, animated: true)
     }
-    */
-
 }

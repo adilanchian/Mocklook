@@ -13,6 +13,7 @@
 		DD97FC6A204C799100EBE00E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97FC69204C799100EBE00E /* Appointment.swift */; };
 		DD97FC6B204C799100EBE00E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97FC69204C799100EBE00E /* Appointment.swift */; };
 		DD97FC6D204C7DF800EBE00E /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97FC6C204C7DF800EBE00E /* AppointmentTableViewCell.swift */; };
+		DDDA3316204D99F3008EEF12 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDA3315204D99F3008EEF12 /* Protocols.swift */; };
 		DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33960204B506B007E7CCD /* AppDelegate.swift */; };
 		DDF33966204B506B007E7CCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF33964204B506B007E7CCD /* Main.storyboard */; };
 		DDF33968204B506B007E7CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF33967204B506B007E7CCD /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		DD43BEDA204BE04B0094643F /* AppointmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentManager.swift; sourceTree = "<group>"; };
 		DD97FC69204C799100EBE00E /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		DD97FC6C204C7DF800EBE00E /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
+		DDDA3315204D99F3008EEF12 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DDF3395D204B506B007E7CCD /* Mocklook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocklook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF33960204B506B007E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF33965204B506B007E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +117,14 @@
 			isa = PBXGroup;
 			children = (
 				DD43BEDA204BE04B0094643F /* AppointmentManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DDDA3314204D99D1008EEF12 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DDDA3315204D99F3008EEF12 /* Protocols.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -194,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */,
+				DDDA3314204D99D1008EEF12 /* Helpers */,
 			);
 			path = CalenderAgenda;
 			sourceTree = "<group>";
@@ -312,6 +323,7 @@
 				DDF339AA204B91ED007E7CCD /* CalendarCollectionViewCell.swift in Sources */,
 				DD43BED4204BDB380094643F /* AgendaTableViewController.swift in Sources */,
 				DDF33990204B60D1007E7CCD /* CalendarManager.swift in Sources */,
+				DDDA3316204D99F3008EEF12 /* Protocols.swift in Sources */,
 				DDF339A2204B6D7E007E7CCD /* Constants.swift in Sources */,
 				DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */,
 				DD43BEDB204BE04B0094643F /* AppointmentManager.swift in Sources */,

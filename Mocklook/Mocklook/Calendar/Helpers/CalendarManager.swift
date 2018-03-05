@@ -77,4 +77,24 @@ class CalendarManager {
             day = calendar.date(byAdding: .day, value: 1, to: day!)
         }
     }
+    
+    func calculateCalendarPath(stringDate: String) -> IndexPath? {
+        // Create Date object from string //
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMMM d"
+
+        guard let date = formatter.date(from: stringDate) else {
+            print("Invalid date. Returning.")
+            return nil
+        }
+        
+        // Get month component //
+        let monthIndex = self.calendar.component(.month, from: date) - 1
+        
+        // Get day component //
+        let dayIndex = self.calendar.component(.day, from: date) - 1
+        
+        // Create IndexPath //
+        return IndexPath(item: dayIndex, section: monthIndex)
+    }
 }
