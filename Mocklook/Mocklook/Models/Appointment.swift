@@ -15,15 +15,21 @@ class Appointment {
     var dateTime: Date!
     var members: [String]!
     var available: Bool!
+    var duration: String!
+    var localizedTime: String {
+        get {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a"
+            return "\(formatter.string(from: self.dateTime))"
+        }
+    }
     
-    init(title: String, location: String, dateTime: Date, members: [String]) {
+    init(title: String, location: String, dateTime: Date, members: [String], duration: String) {
         self.title = title
         self.location = location
         self.dateTime = dateTime
         self.members = members
         self.available = true
+        self.duration = duration
     }
-    
-    //-- Helpers --//
-    
 }

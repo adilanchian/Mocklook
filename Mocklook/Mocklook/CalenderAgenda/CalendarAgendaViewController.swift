@@ -33,7 +33,7 @@ class CalendarAgendaViewController: UIViewController {
         self.view.addSubview(self.calendar.calenderCollectionView)
         
         // Scroll to current section //
-        self.calendar.calenderCollectionView.scrollToItem(at: IndexPath.init(row: 0, section: self.calendarManager.currentMonth - 1), at: .top, animated: true)
+        self.calendar.calenderCollectionView.scrollToItem(at: IndexPath(row: 0, section: self.calendarManager.currentMonth - 1), at: .top, animated: true)
         print("Calender view setup.")
     }
     
@@ -42,6 +42,10 @@ class CalendarAgendaViewController: UIViewController {
         self.agenda.view.frame = CGRect(x: 0, y: screenSize.height / 3, width: screenSize.width, height: screenSize.height - screenSize.height / 3)
         self.addChildViewController(self.agenda)
         self.view.addSubview(self.agenda.agendaTableView)
+        
+        // Scroll to current date section //
+        self.agenda.agendaTableView.scrollToRow(at: IndexPath(item: 0, section: calendarManager.todayDateSection), at: .top, animated: true)
+        
         print("Calender view setup.")
     }
     

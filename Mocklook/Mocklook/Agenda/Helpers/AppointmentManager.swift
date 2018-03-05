@@ -14,6 +14,7 @@ class AppointmentManager {
     var randoTitles: [String]!
     var randoTime: [Date]!
     var randoMembers: [String]!
+    var randoDurations: [String]!
     var sortedAppointments: Dictionary<String, [Appointment]>!
     
     init() {
@@ -40,17 +41,38 @@ class AppointmentManager {
             "Al Ball",
             "Tiffany Lucas"
         ]
+        self.randoDurations = [
+            "15m",
+            "30m",
+            "45m",
+            "1h",
+            "112d 19h"
+        ]
         self.sortedAppointments = Dictionary<String, [Appointment]>()
     }
     
     //-- Helpers --//
     func generateAppointments() {
         for _ in 0...25 {
-            let randomMonth = Int(arc4random_uniform(3))
+            // Properties to randomize appointments //
             let randomValue = Int(arc4random_uniform(5))
-            let dateComps = DateComponents.init(calendar: Calendar.current, timeZone: Calendar.current.timeZone, era: nil, year: 2018, month: randomMonth, day: (randomValue + 4), hour: (24 - randomValue), minute: (60 - randomValue), second: nil, nanosecond: nil, weekday: randomValue, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+            let randomMonth = Int(arc4random_uniform(3))
+            let currentMonth = Calendar.current.component(.month, from: Date())
+            let currentDay = Calendar.current.component(.day, from: Date())
+            let currentHour = Calendar.current.component(.hour, from: Date())
+            let currentMinute = Calendar.current.component(.minute, from: Date())
             
-            let appointment = Appointment(title: self.randoTitles[randomValue], location: self.randoAddresses[randomValue], dateTime: Calendar.current.date(from: dateComps)!, members: self.randoMembers)
+            let dateComps = DateComponents.init(calendar: Calendar.current, timeZone: Calendar.current.timeZone, era: nil, year: 2018, month: abs(randomMonth - currentMonth + randomValue), day: abs(randomMonth + currentDay), hour: (24 - currentHour + randomValue), minute: (60 - currentMinute + randomValue), second: nil, nanosecond: nil, weekday: randomValue, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+            
+            let appointment = Appointment(title: self.randoTitles[randomValue], location: self.randoAddresses[randomValue], dateTime: Calendar.current.date(from: dateComps)!, members: self.randoMembers, duration: randoDurations[randomValue])
+            
+            // Set indicator to true or false //
+            if randomValue % 2 == 0 {
+                appointment.available = true
+            } else {
+                appointment.available = false
+            }
+            
             self.appointments.append(appointment)
         }
     }
@@ -77,6 +99,10 @@ class AppointmentManager {
         
         self.sortedAppointments.forEach { (key, dateArray) in
             print("\(key) ---> \(dateArray)")
+            let sorted = dateArray.sorted(by: { (appt1, appt2) -> Bool in
+                return appt1.dateTime.compare(appt2.dateTime) == .orderedAscending
+            })
+            self.sortedAppointments[key] = sorted
         }
     }
 }

@@ -16,7 +16,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = textColor
+        label.textColor = grayTextColor
         label.text = ""
         return label
     }()
@@ -25,7 +25,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         // Setup all UI elements //
-        self.setupSubViews()
+        self.addSubViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,7 +56,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         self.dayLabel.text = dayText
     }
     
-    func setupSubViews() {
+    func addSubViews() {
         // Add border bottom for each cell //
         let borderBottom = CALayer()
         borderBottom.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1.0)

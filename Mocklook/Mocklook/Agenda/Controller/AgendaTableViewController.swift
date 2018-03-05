@@ -32,7 +32,6 @@ class AgendaTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    //-- Table view data source --//
     override func numberOfSections(in tableView: UITableView) -> Int {
         // There should be a section for every day in the calendar //
         return self.calendarManager.sectionDays.count
@@ -71,6 +70,15 @@ class AgendaTableViewController: UITableViewController {
         return 24
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let sectionString = self.calendarManager.sectionDays[indexPath.section]
+        if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
+            return 80
+        }
+        
+        return 40
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // Create header custom view //
         let sectionView = UIView()
@@ -89,7 +97,7 @@ class AgendaTableViewController: UITableViewController {
             dateLabel.textColor = todaySectionTxtColor
         } else {
             sectionView.backgroundColor = disabledColor
-            dateLabel.textColor = textColor
+            dateLabel.textColor = grayTextColor
         }
         
         // Set dateLabel string //
@@ -103,7 +111,7 @@ class AgendaTableViewController: UITableViewController {
     //-- Helpers --//
     func setupTableView() {
         // Instantiate table view //
-        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .grouped)
+        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .plain)
         
         // Set delegates //
         self.agendaTableView.delegate = self

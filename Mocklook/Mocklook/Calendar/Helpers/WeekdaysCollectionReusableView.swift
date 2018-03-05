@@ -25,7 +25,7 @@ class WeekdaysCollectionReusableView: UICollectionReusableView {
             // dayLabel.frame = CGRect(x: 0, y: 0, width: screenSize.maxX / 7, height: screenSize.maxX / 7)
             dayLabel.textAlignment = .center
             dayLabel.font = UIFont.systemFont(ofSize: 16)
-            dayLabel.textColor = textColor
+            dayLabel.textColor = grayTextColor
             dayLabel.text = weekdays[index]
             self.labelArray.append(dayLabel)
         }

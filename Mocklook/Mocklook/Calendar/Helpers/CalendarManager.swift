@@ -24,6 +24,15 @@ class CalendarManager {
             return self.calendar.date(from: components)!
         }
     }
+    var todayDateSection: Int {
+        get {
+            let startDateComps = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: 1, day: 1, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+            let startDay = self.calendar.date(from: startDateComps)
+            let endDate = Date()
+            
+            return self.calendar.dateComponents([.day], from: startDay!, to: endDate).day!
+        }
+    }
     
     init() {
         let date = Date()

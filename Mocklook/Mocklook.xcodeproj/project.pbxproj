@@ -81,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				DD43BED8204BDD530094643F /* Controller */,
-				DD43BED9204BDD610094643F /* Cell */,
 				DD43BEDD204BE0510094643F /* Helpers */,
 			);
 			path = Agenda;
@@ -99,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				DD43BED3204BDB380094643F /* AgendaTableViewController.swift */,
+				DD43BED9204BDD610094643F /* Cell */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
