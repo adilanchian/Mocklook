@@ -20,6 +20,9 @@ class AgendaTableViewController: UITableViewController {
         // Generate mock appointments //
         self.appointmentManager.generateAppointments()
         
+        // Sort appointments by section //
+        self.appointmentManager.sortAppointments()
+        
         // Setup Table View //
         self.setupTableView()
     }
@@ -36,14 +39,30 @@ class AgendaTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Will use mock data for number of rows in each section //
-        return self.appointmentManager.appointments.count
+        // Get the key from dictionary //
+        let sectionString = self.calendarManager.sectionDays[section]
+        
+        if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
+            print("There are \(self.appointmentManager.sortedAppointments[sectionString]!.count) appointments for section: \(sectionString).")
+            return self.appointmentManager.sortedAppointments[sectionString]!.count
+        }
+        
+        // Need one cell to display "No events" message
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentCell", for: indexPath) as! AppointmentTableViewCell
         
-        cell.addCellData(appointment: self.appointmentManager.appointments[indexPath.row])
+        let sectionString = self.calendarManager.sectionDays[indexPath.section]
+        
+        // Get the key from dictionary //
+        if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
+            let appointments = self.appointmentManager.sortedAppointments[sectionString]!
+            cell.addCellData(appointment: appointments[indexPath.row])
+        } else {
+            cell.addCellData(appointment: nil)
+        }
         
         return cell
     }
@@ -84,7 +103,7 @@ class AgendaTableViewController: UITableViewController {
     //-- Helpers --//
     func setupTableView() {
         // Instantiate table view //
-        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .plain)
+        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .grouped)
         
         // Set delegates //
         self.agendaTableView.delegate = self

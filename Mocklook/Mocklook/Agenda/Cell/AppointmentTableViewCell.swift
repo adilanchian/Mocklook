@@ -10,7 +10,7 @@ import UIKit
 
 class AppointmentTableViewCell: UITableViewCell {
     //-- UI Properties --//
-    let titleLabel: UILabel = {
+    var titleLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .center
@@ -20,7 +20,7 @@ class AppointmentTableViewCell: UITableViewCell {
         return label
     }()
     
-    let locationLabel: UILabel = {
+    var locationLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .center
@@ -30,7 +30,7 @@ class AppointmentTableViewCell: UITableViewCell {
         return label
     }()
     
-    let dateTimeLabel: UILabel = {
+    var dateTimeLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .center
@@ -40,11 +40,32 @@ class AppointmentTableViewCell: UITableViewCell {
         return label
     }()
     
+    var noEventsLabel: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.text = "No events"
+        return label
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         // Setup elements in cell //
         self.setupSubviews()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        let subviews = self.subviews
+        
+        subviews.forEach { (view) in
+            if let label = view as? UILabel {
+                label.text = nil
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,14 +77,22 @@ class AppointmentTableViewCell: UITableViewCell {
         self.addSubview(self.titleLabel)
         self.addSubview(self.locationLabel)
         self.addSubview(self.dateTimeLabel)
+        self.addSubview(self.noEventsLabel)
     }
     
-    func addCellData(appointment: Appointment) {
-        self.titleLabel.text = appointment.title
-        self.locationLabel.text = appointment.location
+    func addCellData(appointment: Appointment?) {
+        
+        guard let scheduledAppointment = appointment else {
+            self.noEventsLabel.text = "No events"
+            self.noEventsLabel.sizeToFit()
+            return
+        }
+        
+        self.titleLabel.text = scheduledAppointment.title
+        self.locationLabel.text = scheduledAppointment.location
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
-        self.dateTimeLabel.text = dateFormatter.string(from: appointment.dateTime)
+        self.dateTimeLabel.text = dateFormatter.string(from: scheduledAppointment.dateTime)
         
         // Run size to fit //
         self.titleLabel.sizeToFit()
