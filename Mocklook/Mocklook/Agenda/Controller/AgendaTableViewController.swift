@@ -110,6 +110,12 @@ class AgendaTableViewController: UITableViewController {
     }
     
     //-- Scroll View --//
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.delegate != nil {
+            self.delegate?.agendaIsActive()
+        }
+    }
+    
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let firstCell = self.agendaTableView.indexPathsForVisibleRows?[0] else {
             print("No visible cells in table. Returning.")
@@ -181,6 +187,15 @@ class AgendaTableViewController: UITableViewController {
         
         // Add UITable to view //
         self.view.addSubview(self.agendaTableView)
+    }
+    
+    func expand() {
+        // Expand size of agenda view and move up //
+        self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.2), width: screenSize.maxX, height: (screenSize.maxY - (screenSize.maxY * 0.2)))
+    }
+    
+    func shrink() {
+        
     }
     
     //-- DateSyncDelegate --//

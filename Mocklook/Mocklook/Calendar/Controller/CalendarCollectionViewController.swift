@@ -13,6 +13,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     var calendarManager: CalendarManager!
     var calenderCollectionView: UICollectionView!
     var currentSelection: IndexPath!
+    var isExpanded: Bool!
     
     override func viewDidLoad() {
         print("Setting up collection view controller...")
@@ -27,6 +28,9 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         
         // Set current selection //
         self.currentSelection = IndexPath(item: self.calendarManager.currentDay - 1, section: self.calendarManager.currentMonth - 1)
+        
+        // Set isExpanded //
+        self.isExpanded = true
     }
     
     //-- UICollectionViewDataSource --//
@@ -50,7 +54,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     }
     
     //-- UICollectionViewDelegate --//
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    /* override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if indexPath.section == 0 {
             if let weekdaysView = self.calenderCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "WeekDays", for: indexPath) as? WeekdaysCollectionReusableView {
@@ -59,7 +63,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         }
         
         return UICollectionReusableView()
-     }
+     } */
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
@@ -98,5 +102,14 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         // Add to subview //
         self.view.addSubview(self.calenderCollectionView)
         print("Collection view controller setup.")
+    }
+    
+    func shrink() {
+        // Shrink height of calendar view //
+        self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.2))
+    }
+    
+    func expand() {
+        
     }
 }

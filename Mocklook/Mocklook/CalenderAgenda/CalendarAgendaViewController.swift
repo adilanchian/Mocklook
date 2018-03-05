@@ -93,4 +93,18 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         // Set currentSelection to new cell path //
         self.calendar.currentSelection = path
     }
+    
+    func agendaIsActive() {
+        // If calendar is expanded, shrink //
+        print("Agenda is active...")
+        if self.calendar.isExpanded {
+            self.calendar.isExpanded = false
+            
+            // Shrink calendar //
+            self.calendar.shrink()
+            
+            // Expand agenda //
+            self.agenda.expand()
+        }
+    }
 }
