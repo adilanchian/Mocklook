@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01FFD7CD64F1569158A545FD /* Pods_Mocklook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC758145EF921F766D7A372F /* Pods_Mocklook.framework */; };
+		0734314F29D352AA60ED5F59 /* Pods_MocklookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE36AAD0D4132B7ECEAD2F2 /* Pods_MocklookTests.framework */; };
 		DD43BED4204BDB380094643F /* AgendaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD43BED3204BDB380094643F /* AgendaTableViewController.swift */; };
 		DD43BEDB204BE04B0094643F /* AppointmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD43BEDA204BE04B0094643F /* AppointmentManager.swift */; };
 		DD43BEDC204BE04B0094643F /* AppointmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD43BEDA204BE04B0094643F /* AppointmentManager.swift */; };
 		DD97FC6A204C799100EBE00E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97FC69204C799100EBE00E /* Appointment.swift */; };
 		DD97FC6B204C799100EBE00E /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97FC69204C799100EBE00E /* Appointment.swift */; };
 		DD97FC6D204C7DF800EBE00E /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97FC6C204C7DF800EBE00E /* AppointmentTableViewCell.swift */; };
+		DDC284E0204E653C00914601 /* GeoLocatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC284DF204E653C00914601 /* GeoLocatorManager.swift */; };
+		DDC284E1204E653C00914601 /* GeoLocatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC284DF204E653C00914601 /* GeoLocatorManager.swift */; };
 		DDDA3316204D99F3008EEF12 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDA3315204D99F3008EEF12 /* Protocols.swift */; };
 		DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33960204B506B007E7CCD /* AppDelegate.swift */; };
 		DDF33966204B506B007E7CCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF33964204B506B007E7CCD /* Main.storyboard */; };
@@ -39,10 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1545AAEAE3756297A3C5765B /* Pods-Mocklook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mocklook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mocklook/Pods-Mocklook.debug.xcconfig"; sourceTree = "<group>"; };
+		1D51983479BA8C0E453E7739 /* Pods-MocklookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MocklookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MocklookTests/Pods-MocklookTests.release.xcconfig"; sourceTree = "<group>"; };
+		35B8B052D9A91CB2A7F4883C /* Pods-MocklookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MocklookTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MocklookTests/Pods-MocklookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BBA965F620AEE63D2070CE53 /* Pods-Mocklook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mocklook.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mocklook/Pods-Mocklook.release.xcconfig"; sourceTree = "<group>"; };
 		DD43BED3204BDB380094643F /* AgendaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaTableViewController.swift; sourceTree = "<group>"; };
 		DD43BEDA204BE04B0094643F /* AppointmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentManager.swift; sourceTree = "<group>"; };
 		DD97FC69204C799100EBE00E /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		DD97FC6C204C7DF800EBE00E /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
+		DDC284DF204E653C00914601 /* GeoLocatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocatorManager.swift; sourceTree = "<group>"; };
 		DDDA3315204D99F3008EEF12 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DDF3395D204B506B007E7CCD /* Mocklook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocklook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF33960204B506B007E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +68,8 @@
 		DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewController.swift; sourceTree = "<group>"; };
 		DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysCollectionReusableView.swift; sourceTree = "<group>"; };
+		FC758145EF921F766D7A372F /* Pods_Mocklook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mocklook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFE36AAD0D4132B7ECEAD2F2 /* Pods_MocklookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MocklookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01FFD7CD64F1569158A545FD /* Pods_Mocklook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,12 +85,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0734314F29D352AA60ED5F59 /* Pods_MocklookTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46EA10E85D11B0C7013B488B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1545AAEAE3756297A3C5765B /* Pods-Mocklook.debug.xcconfig */,
+				BBA965F620AEE63D2070CE53 /* Pods-Mocklook.release.xcconfig */,
+				35B8B052D9A91CB2A7F4883C /* Pods-MocklookTests.debug.xcconfig */,
+				1D51983479BA8C0E453E7739 /* Pods-MocklookTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8A6629FCBB1EAE1D053E28D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC758145EF921F766D7A372F /* Pods_Mocklook.framework */,
+				FFE36AAD0D4132B7ECEAD2F2 /* Pods_MocklookTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DD43BED2204BDB200094643F /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +168,8 @@
 				DDF3395F204B506B007E7CCD /* Mocklook */,
 				DDF33997204B658C007E7CCD /* MocklookTests */,
 				DDF3395E204B506B007E7CCD /* Products */,
+				46EA10E85D11B0C7013B488B /* Pods */,
+				8A6629FCBB1EAE1D053E28D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF3398F204B60D1007E7CCD /* CalendarManager.swift */,
+				DDC284DF204E653C00914601 /* GeoLocatorManager.swift */,
 				DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */,
 			);
 			path = Helpers;
@@ -224,9 +260,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDF3397A204B506B007E7CCD /* Build configuration list for PBXNativeTarget "Mocklook" */;
 			buildPhases = (
+				0D503DEC9A2FB1967C271A76 /* [CP] Check Pods Manifest.lock */,
 				DDF33959204B506B007E7CCD /* Sources */,
 				DDF3395A204B506B007E7CCD /* Frameworks */,
 				DDF3395B204B506B007E7CCD /* Resources */,
+				76EC2BFF4BC54454F367457D /* [CP] Embed Pods Frameworks */,
+				D77865FCB121C8FDDD65AB2A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -241,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDF3399D204B658C007E7CCD /* Build configuration list for PBXNativeTarget "MocklookTests" */;
 			buildPhases = (
+				C7CC6F061B0307E40B7CF749 /* [CP] Check Pods Manifest.lock */,
 				DDF33992204B658C007E7CCD /* Sources */,
 				DDF33993204B658C007E7CCD /* Frameworks */,
 				DDF33994204B658C007E7CCD /* Resources */,
+				498AE14CCC64DBF6F3C36AB8 /* [CP] Embed Pods Frameworks */,
+				90264565D913705AAB7FF0B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,6 +357,110 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D503DEC9A2FB1967C271A76 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mocklook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		498AE14CCC64DBF6F3C36AB8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MocklookTests/Pods-MocklookTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76EC2BFF4BC54454F367457D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Mocklook/Pods-Mocklook-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSky/SwiftSky.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSky.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mocklook/Pods-Mocklook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90264565D913705AAB7FF0B4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MocklookTests/Pods-MocklookTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7CC6F061B0307E40B7CF749 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MocklookTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D77865FCB121C8FDDD65AB2A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mocklook/Pods-Mocklook-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DDF33959204B506B007E7CCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -323,6 +469,7 @@
 				DDF339AA204B91ED007E7CCD /* CalendarCollectionViewCell.swift in Sources */,
 				DD43BED4204BDB380094643F /* AgendaTableViewController.swift in Sources */,
 				DDF33990204B60D1007E7CCD /* CalendarManager.swift in Sources */,
+				DDC284E0204E653C00914601 /* GeoLocatorManager.swift in Sources */,
 				DDDA3316204D99F3008EEF12 /* Protocols.swift in Sources */,
 				DDF339A2204B6D7E007E7CCD /* Constants.swift in Sources */,
 				DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */,
@@ -339,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC284E1204E653C00914601 /* GeoLocatorManager.swift in Sources */,
 				DDF33999204B658C007E7CCD /* MocklookTests.swift in Sources */,
 				DDF339A0204B65DA007E7CCD /* CalendarManager.swift in Sources */,
 				DD43BEDC204BE04B0094643F /* AppointmentManager.swift in Sources */,
@@ -485,6 +633,7 @@
 		};
 		DDF3397B204B506B007E7CCD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1545AAEAE3756297A3C5765B /* Pods-Mocklook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -500,6 +649,7 @@
 		};
 		DDF3397C204B506B007E7CCD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBA965F620AEE63D2070CE53 /* Pods-Mocklook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -515,6 +665,7 @@
 		};
 		DDF3399E204B658C007E7CCD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35B8B052D9A91CB2A7F4883C /* Pods-MocklookTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +682,7 @@
 		};
 		DDF3399F204B658C007E7CCD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D51983479BA8C0E453E7739 /* Pods-MocklookTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

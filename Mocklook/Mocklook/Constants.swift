@@ -22,3 +22,7 @@ let calenderSelectedColor = UIColor(red:0.00, green:0.47, blue:0.85, alpha:0.5)
 //-- Device Screen Size --//
 let screenSize = UIScreen.main.bounds
 let statusBarSize = UIApplication.shared.statusBarFrame
+
+//-- SwiftSky API Key --//
+// PLEASE NOTE: I do realize the large security breach that is happening here, but given the timeframe, this was the best approach in my mind. Ultimately, reading this key in from a config file would be ideal //
+let swiftSkyKey = "25323cb3ad985eae919f806cd2949e55"

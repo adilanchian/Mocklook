@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftSky
 
 class Appointment {
     //-- Properties --//
@@ -16,6 +17,7 @@ class Appointment {
     var members: [String]!
     var available: Bool!
     var duration: String!
+    var temperature: String!
     var localizedTime: String {
         get {
             let formatter = DateFormatter()
@@ -31,5 +33,36 @@ class Appointment {
         self.members = members
         self.available = true
         self.duration = duration
+        self.temperature = nil
+        
+        // Setup SwiftSky framework //
+        SwiftSky.secret = swiftSkyKey
+        SwiftSky.language = .english
+        SwiftSky.locale = .autoupdatingCurrent
+        SwiftSky.units.temperature = .fahrenheit
+    }
+    
+    func getTemperature() {
+        let geoLocator = GeoLocatorManager()
+        
+        geoLocator.getCoordinates(address: self.location) { (location) in
+            guard let coordinates = location else {
+                print("Location came back nil. Returning.")
+                self.temperature = "Temp N/a"
+                return
+            }
+            
+            // Call SwiftSky API //
+            SwiftSky.get([.current], at: coordinates, { (result) in
+                switch result {
+                case .success(let forecast):
+                    print(forecast.current!.temperature!.current!.label)
+                    self.temperature = forecast.current!.temperature!.current!.label
+                case .failure(let error):
+                    print("There was an error getting the temperature: \(error)")
+                    self.temperature = "Temp N/a"
+                }
+            })
+        }
     }
 }

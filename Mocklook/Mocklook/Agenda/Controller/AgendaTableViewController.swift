@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AgendaTableViewController: UITableViewController {
+class AgendaTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
     //-- Properties --//
     let appointmentManager = AppointmentManager()
     let calendarManager = CalendarManager()
@@ -126,6 +126,22 @@ class AgendaTableViewController: UITableViewController {
         return sectionView
     }
     
+    //-- Prefetch data source --//
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { (path) in
+            var sectionString = self.calendarManager.sectionDays[path.section]
+            
+            if sectionString.range(of: "Today · ") != nil {
+                sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
+            }
+            
+            // Get array of appointments //
+            if let appointment = self.appointmentManager.sortedAppointments[sectionString]?[path.row] {
+                appointment.getTemperature()
+            }
+        }
+    }
+    
     //-- Scroll View --//
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if self.delegate != nil {
@@ -197,6 +213,7 @@ class AgendaTableViewController: UITableViewController {
         // Set delegates //
         self.agendaTableView.delegate = self
         self.agendaTableView.dataSource = self
+        self.agendaTableView.prefetchDataSource = self
         
         // Remove scroll indicator //
         self.agendaTableView.showsVerticalScrollIndicator = false

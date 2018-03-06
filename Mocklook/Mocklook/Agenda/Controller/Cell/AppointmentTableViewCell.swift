@@ -41,6 +41,17 @@ class AppointmentTableViewCell: UITableViewCell {
         return label
     }()
     
+    var tempLabel: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = grayTextColor
+        label.text = nil
+        return label
+    }()
+    
     var noEventsLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -100,7 +111,7 @@ class AppointmentTableViewCell: UITableViewCell {
     //-- Helpers --//
     func addSubviews() {
         let outerPadding = CGFloat(15)
-        let innderPadding = CGFloat(8)
+        let innerPadding = CGFloat(8)
         
         //self.backgroundColor = UIColor.gray
         
@@ -113,14 +124,11 @@ class AppointmentTableViewCell: UITableViewCell {
         self.titleLabel.frame = CGRect(x: 0, y: 0, width: descriptionView.frame.width, height: (descriptionView.frame.height * 0.5))
 
         // Location label layout //
-        self.locationLabel.frame = CGRect(x: 0, y: (self.titleLabel.frame.height + innderPadding), width: descriptionView.frame.width, height: (descriptionView.frame.height - self.titleLabel.frame.height - innderPadding))
+        self.locationLabel.frame = CGRect(x: 0, y: (self.titleLabel.frame.height + innerPadding), width: descriptionView.frame.width, height: (descriptionView.frame.height - self.titleLabel.frame.height - innerPadding))
         
         // Add Title and location label //
         descriptionView.addSubview(self.titleLabel)
         descriptionView.addSubview(self.locationLabel)
-        
-        // Size to fit views //
-        descriptionView.sizeToFit()
         
         // Add description view to cell view //
         self.addSubview(descriptionView)
@@ -136,6 +144,11 @@ class AppointmentTableViewCell: UITableViewCell {
         
         // Add to subview //
         self.addSubview(self.dateTimeLabel)
+        
+        // Temperature label layout //
+        self.tempLabel.frame = CGRect(x: (self.availabilityIndicator.frame.minX - self.frame.width * 0.15 - (outerPadding * 1.5)), y: (descriptionView.frame.maxY - outerPadding), width: self.dateTimeLabel.frame.maxX, height: (self.dateTimeLabel.frame.maxY))
+
+        self.addSubview(self.tempLabel)
         
         // No Events Layout //
         self.noEventsLabel.frame = CGRect(x: (self.frame.minX + outerPadding), y: outerPadding, width: self.dateTimeLabel.frame.width, height: self.dateTimeLabel.frame.height)
@@ -155,6 +168,7 @@ class AppointmentTableViewCell: UITableViewCell {
         self.titleLabel.text = scheduledAppointment.title
         self.locationLabel.text = scheduledAppointment.location
         self.dateTimeLabel.text = scheduledAppointment.localizedTime
+        self.tempLabel.text = scheduledAppointment.temperature
         
         if scheduledAppointment.available {
             self.availabilityIndicator.backgroundColor = availIndicatorColor
@@ -164,6 +178,7 @@ class AppointmentTableViewCell: UITableViewCell {
         
         // Size to fit //
         self.dateTimeLabel.sizeToFit()
+        self.tempLabel.sizeToFit()
     }
 
     /*override func setSelected(_ selected: Bool, animated: Bool) {
