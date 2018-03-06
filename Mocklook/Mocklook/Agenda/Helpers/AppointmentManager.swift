@@ -106,7 +106,6 @@ class AppointmentManager {
         }
         
         self.sortedAppointments.forEach { (key, dateArray) in
-            print("\(key) ---> \(dateArray)")
             let sorted = dateArray.sorted(by: { (appt1, appt2) -> Bool in
                 return appt1.dateTime.compare(appt2.dateTime) == .orderedAscending
             })
