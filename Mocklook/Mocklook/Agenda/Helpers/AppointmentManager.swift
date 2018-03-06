@@ -53,27 +53,35 @@ class AppointmentManager {
     
     //-- Helpers --//
     func generateAppointments() {
-        for _ in 0...50 {
-            // Properties to randomize appointments //
-            let randomValue = Int(arc4random_uniform(5))
-            let randomMonth = Int(arc4random_uniform(12))
-            let currentMonth = Calendar.current.component(.month, from: Date())
-            let currentDay = Calendar.current.component(.day, from: Date())
-            let currentHour = Calendar.current.component(.hour, from: Date())
-            let currentMinute = Calendar.current.component(.minute, from: Date())
-            
-            let dateComps = DateComponents.init(calendar: Calendar.current, timeZone: Calendar.current.timeZone, era: nil, year: 2018, month: abs(randomMonth - currentMonth + randomValue), day: abs(randomMonth + currentDay), hour: (24 - currentHour + randomValue), minute: (60 - currentMinute + randomValue), second: nil, nanosecond: nil, weekday: randomValue, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
-            
-            let appointment = Appointment(title: self.randoTitles[randomValue], location: self.randoAddresses[randomValue], dateTime: Calendar.current.date(from: dateComps)!, members: self.randoMembers, duration: randoDurations[randomValue])
-            
-            // Set indicator to true or false //
-            if randomValue % 2 == 0 {
-                appointment.available = true
-            } else {
-                appointment.available = false
+        DispatchQueue.global(qos: .background).sync {
+            for _ in 0...50 {
+                // Properties to randomize appointments //
+                let randomValue = Int(arc4random_uniform(5))
+                let randomMonth = Int(arc4random_uniform(12))
+                let currentMonth = Calendar.current.component(.month, from: Date())
+                let currentDay = Calendar.current.component(.day, from: Date())
+                let currentHour = Calendar.current.component(.hour, from: Date())
+                let currentMinute = Calendar.current.component(.minute, from: Date())
+                
+                let dateComps = DateComponents.init(calendar: Calendar.current, timeZone: Calendar.current.timeZone, era: nil, year: 2018, month: abs(randomMonth - currentMonth + randomValue), day: abs(randomMonth + currentDay), hour: (24 - currentHour + randomValue), minute: (60 - currentMinute + randomValue), second: nil, nanosecond: nil, weekday: randomValue, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+                
+                let appointment = Appointment(title: self.randoTitles[randomValue], location: self.randoAddresses[randomValue], dateTime: Calendar.current.date(from: dateComps)!, members: self.randoMembers, duration: self.randoDurations[randomValue])
+                
+                // Set indicator to true or false //
+                if randomValue % 2 == 0 {
+                    appointment.available = true
+                } else {
+                    appointment.available = false
+                }
+                
+                self.appointments.append(appointment)
             }
             
-            self.appointments.append(appointment)
+            // Custom appointment //
+            let customApt = Appointment(title: "Welcome Alec to Outlook!", location: "1 Microsoft Way, Redmond, WA 98052", dateTime: Date(), members: ["Alec", "Alon"], duration: "All day")
+            customApt.available = true
+            
+            self.appointments.append(customApt)
         }
     }
     

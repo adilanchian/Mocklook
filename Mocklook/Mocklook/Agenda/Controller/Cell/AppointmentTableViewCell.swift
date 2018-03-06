@@ -108,7 +108,6 @@ class AppointmentTableViewCell: UITableViewCell {
         let descriptionView = UIView()
         descriptionView.tag = 0
         descriptionView.frame = CGRect(x: (self.frame.width * 0.34), y: outerPadding, width: CGFloat(self.frame.width - self.frame.width * 0.34), height: self.frame.height)
-        //descriptionView.backgroundColor = UIColor.green
         
         // Title label layout //
         self.titleLabel.frame = CGRect(x: 0, y: 0, width: descriptionView.frame.width, height: (descriptionView.frame.height * 0.5))
@@ -164,7 +163,6 @@ class AppointmentTableViewCell: UITableViewCell {
         }
         
         // Size to fit //
-        self.locationLabel.sizeToFit()
         self.dateTimeLabel.sizeToFit()
     }
 

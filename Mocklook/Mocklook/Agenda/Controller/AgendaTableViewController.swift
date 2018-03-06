@@ -44,7 +44,11 @@ class AgendaTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Get the key from dictionary //
-        let sectionString = self.calendarManager.sectionDays[section]
+        var sectionString = self.calendarManager.sectionDays[section]
+        
+        if sectionString.range(of: "Today · ") != nil {
+            sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
+        }
         
         if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
             print("There are \(self.appointmentManager.sortedAppointments[sectionString]!.count) appointments for section: \(sectionString).")
@@ -58,7 +62,11 @@ class AgendaTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentCell", for: indexPath) as! AppointmentTableViewCell
         
-        let sectionString = self.calendarManager.sectionDays[indexPath.section]
+        var sectionString = self.calendarManager.sectionDays[indexPath.section]
+        
+        if sectionString.range(of: "Today · ") != nil {
+            sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
+        }
         
         // Get the key from dictionary //
         if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
@@ -76,7 +84,12 @@ class AgendaTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let sectionString = self.calendarManager.sectionDays[indexPath.section]
+        var sectionString = self.calendarManager.sectionDays[indexPath.section]
+        
+        if sectionString.range(of: "Today · ") != nil {
+            sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
+        }
+        
         if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
             return 80
         }
@@ -136,6 +149,10 @@ class AgendaTableViewController: UITableViewController {
             // Get the label that has the title of the section to send over to Calendar View //
             headerView.subviews.forEach({ (view) in
                 if let label = view as? UILabel {
+                    if label.text?.range(of: "Today · ") != nil {
+                        label.text = label.text!.replacingOccurrences(of: "Today · ", with: "")
+                    }
+                    
                     self.delegate?.changeCurrentCalendarDate(stringDate: label.text!)
                 }
             })
@@ -160,6 +177,10 @@ class AgendaTableViewController: UITableViewController {
                 // Get the label that has the title of the section to send over to Calendar View //
                 headerView.subviews.forEach({ (view) in
                     if let label = view as? UILabel {
+                        if label.text?.range(of: "Today · ") != nil {
+                            label.text = label.text!.replacingOccurrences(of: "Today · ", with: "")
+                        }
+                        
                         self.delegate?.changeCurrentCalendarDate(stringDate: label.text!)
                     }
                 })
