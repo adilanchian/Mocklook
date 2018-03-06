@@ -31,7 +31,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         self.currentSelection = IndexPath(item: self.calendarManager.currentDay - 1, section: self.calendarManager.currentMonth - 1)
         
         // Set isExpanded //
-        self.isExpanded = false
+        self.isExpanded = true
     }
     
     //-- UICollectionViewDataSource --//
@@ -120,13 +120,13 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     
     func shrink() {
         // Shrink height of calendar view //
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.2))
         }
     }
     
     func expand() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             // Expand height of calendar view //
             self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY / 3))
         }

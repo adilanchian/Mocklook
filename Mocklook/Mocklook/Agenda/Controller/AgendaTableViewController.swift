@@ -29,7 +29,7 @@ class AgendaTableViewController: UITableViewController {
         self.setupTableView()
         
         // Set isExpanded //
-        self.isExpanded = true
+        self.isExpanded = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,7 +114,7 @@ class AgendaTableViewController: UITableViewController {
     }
     
     //-- Scroll View --//
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if self.delegate != nil {
             self.delegate?.agendaIsActive()
         }
@@ -194,14 +194,14 @@ class AgendaTableViewController: UITableViewController {
     }
     
     func expand() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             // Expand size of agenda view and move up //
             self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.2), width: screenSize.maxX, height: (screenSize.maxY - (screenSize.maxY * 0.2)))
         }
     }
     
     func shrink() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2) {
             // Shrink size of agenda view and move down //
             self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.3))
             
