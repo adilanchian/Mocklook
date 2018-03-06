@@ -12,5 +12,7 @@ import Foundation
 protocol DateSyncDelegate {
     // Method to send IndexPath to calendar //
     func changeCurrentCalendarDate(stringDate: String)
+    func changeCurrentAgendaDate(dayPath: IndexPath)
     func agendaIsActive()
+    func calendarIsActive()
 }

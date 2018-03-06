@@ -41,6 +41,9 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         // Scroll to current section //
         self.calendar.calenderCollectionView.scrollToItem(at: self.calendar.currentSelection, at: .centeredVertically, animated: true)
         print("Calender view setup.")
+        
+        // Setup delegate for DateSyncDelegate //
+        self.calendar.delegate = self
     }
     
     func setupAgendaView() {
@@ -71,14 +74,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         // Remove background color on current selection //
         if let currentCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell {
             
-            // Change back to disabled color if cell was disabled //
-            if currentCell.isDisabled {
-               currentCell.backgroundColor = disabledColor
-            } else {
-                currentCell.backgroundColor = UIColor.white
-            }
-            
-            currentCell.dayLabel.textColor = grayTextColor
+            currentCell.deselectCell()
         }
         
         // Center collection view vertically //
@@ -86,12 +82,35 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         
         // Set background view on new cell //
         if let newCell = self.calendar.calenderCollectionView.cellForItem(at: path) as? CalendarCollectionViewCell {
-            newCell.backgroundColor = calenderSelectedColor
-            newCell.dayLabel.textColor = UIColor.white
+            newCell.selectCell()
         }
         
         // Set currentSelection to new cell path //
         self.calendar.currentSelection = path
+    }
+    
+    func changeCurrentAgendaDate(dayPath: IndexPath) {
+        print("[CalendarAgendaView] Received new date from Calendar: \(dayPath)")
+        
+        // Calculate what indexPath this corresponds to in the calendar //
+        let path = self.calendarManager.calculateAgendaPath(dayPath: dayPath)
+        
+        // Remove background color on current selection //
+        if let currentCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell {
+            
+            currentCell.deselectCell()
+        }
+        
+        // Set background view on new cell //
+        if let newCell = self.calendar.calenderCollectionView.cellForItem(at: dayPath) as? CalendarCollectionViewCell {
+            newCell.selectCell()
+        }
+        
+        // Set currentSelection to new cell path //
+        self.calendar.currentSelection = dayPath
+        
+        // Scroll agenda view to calculated path //
+        self.agenda.agendaTableView.scrollToRow(at: path, at: .top, animated: true)
     }
     
     func agendaIsActive() {
@@ -99,12 +118,27 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         print("Agenda is active...")
         if self.calendar.isExpanded {
             self.calendar.isExpanded = false
+            self.agenda.isExpanded = true
             
             // Shrink calendar //
             self.calendar.shrink()
             
             // Expand agenda //
             self.agenda.expand()
+        }
+    }
+    
+    func calendarIsActive() {
+        print("Calendar is active...")
+        if self.agenda.isExpanded {
+            self.agenda.isExpanded = false
+            self.calendar.isExpanded = true
+            
+            // Shrink agenda //
+            self.agenda.shrink()
+            
+            // Expand calendar //
+            self.calendar.expand()
         }
     }
 }

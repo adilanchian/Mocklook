@@ -34,6 +34,16 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     //-- Helpers --//
+    func addSubViews() {
+        // Add border bottom for each cell //
+        let borderBottom = CALayer()
+        borderBottom.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1.0)
+        borderBottom.backgroundColor = separatorColor.cgColor
+        self.layer.addSublayer(borderBottom)
+        
+        self.addSubview(self.dayLabel)
+    }
+    
     func setDayLabel(monthDayPath: IndexPath) {
         let currentMonth = Calendar.current.component(.month, from: Date())
         
@@ -59,13 +69,19 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         self.dayLabel.text = dayText
     }
     
-    func addSubViews() {
-        // Add border bottom for each cell //
-        let borderBottom = CALayer()
-        borderBottom.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1.0)
-        borderBottom.backgroundColor = separatorColor.cgColor
-        self.layer.addSublayer(borderBottom)
+    func selectCell() {
+        self.backgroundColor = calenderSelectedColor
+        self.dayLabel.textColor = UIColor.white
+    }
+    
+    func deselectCell() {
+        // Change back to disabled color if cell was disabled //
+        if self.isDisabled {
+            self.backgroundColor = disabledColor
+        } else {
+            self.backgroundColor = UIColor.white
+        }
         
-        self.addSubview(self.dayLabel)
+        self.dayLabel.textColor = grayTextColor
     }
 }

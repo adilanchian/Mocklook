@@ -97,4 +97,15 @@ class CalendarManager {
         // Create IndexPath //
         return IndexPath(item: dayIndex, section: monthIndex)
     }
+    
+    func calculateAgendaPath(dayPath: IndexPath) -> IndexPath {
+        // Get num days in month //
+        let numDays = self.numDaysByMonth(month: dayPath.section)
+        
+        // Get num days in month and then add day //
+        let daySection = numDays + dayPath.row
+        
+        // Return path for agenda view //
+        return IndexPath(row: 0, section: daySection)
+    }
 }

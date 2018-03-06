@@ -14,6 +14,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     var calenderCollectionView: UICollectionView!
     var currentSelection: IndexPath!
     var isExpanded: Bool!
+    var delegate: DateSyncDelegate?
     
     override func viewDidLoad() {
         print("Setting up collection view controller...")
@@ -30,7 +31,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         self.currentSelection = IndexPath(item: self.calendarManager.currentDay - 1, section: self.calendarManager.currentMonth - 1)
         
         // Set isExpanded //
-        self.isExpanded = true
+        self.isExpanded = false
     }
     
     //-- UICollectionViewDataSource --//
@@ -53,6 +54,12 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if self.delegate != nil {
+            self.delegate?.changeCurrentAgendaDate(dayPath: indexPath)
+        }
+    }
+    
     //-- UICollectionViewDelegate --//
     /* override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -70,6 +77,13 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
             return CGSize(width: self.calenderCollectionView.frame.width, height: 4.0)
         } else {
             return CGSize.zero
+        }
+    }
+    
+    //-- Scroll View --//
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if self.delegate != nil {
+            self.delegate?.calendarIsActive()
         }
     }
     
@@ -106,10 +120,15 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     
     func shrink() {
         // Shrink height of calendar view //
-        self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.2))
+        UIView.animate(withDuration: 0.3) {
+            self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.2))
+        }
     }
     
     func expand() {
-        
+        UIView.animate(withDuration: 0.3) {
+            // Expand height of calendar view //
+            self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY / 3))
+        }
     }
 }

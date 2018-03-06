@@ -14,6 +14,7 @@ class AgendaTableViewController: UITableViewController {
     let calendarManager = CalendarManager()
     var agendaTableView: UITableView!
     var delegate: DateSyncDelegate?
+    var isExpanded: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,9 @@ class AgendaTableViewController: UITableViewController {
         
         // Setup Table View //
         self.setupTableView()
+        
+        // Set isExpanded //
+        self.isExpanded = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -190,13 +194,17 @@ class AgendaTableViewController: UITableViewController {
     }
     
     func expand() {
-        // Expand size of agenda view and move up //
-        self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.2), width: screenSize.maxX, height: (screenSize.maxY - (screenSize.maxY * 0.2)))
+        UIView.animate(withDuration: 0.3) {
+            // Expand size of agenda view and move up //
+            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.2), width: screenSize.maxX, height: (screenSize.maxY - (screenSize.maxY * 0.2)))
+        }
     }
     
     func shrink() {
-        
+        UIView.animate(withDuration: 0.3) {
+            // Shrink size of agenda view and move down //
+            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.3))
+            
+        }
     }
-    
-    //-- DateSyncDelegate --//
 }
