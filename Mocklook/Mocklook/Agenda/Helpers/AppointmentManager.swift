@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This class is the appointment handles anything to do with appointments. It creates mock
+    data that is randomized for a set array. DISCLAIMER: all addresses were pulled from a random address generator, except the Microsoft address.
+*/
+
 import Foundation
 
 class AppointmentManager {
@@ -15,6 +20,8 @@ class AppointmentManager {
     var randoTime: [Date]!
     var randoMembers: [String]!
     var randoDurations: [String]!
+    
+    // A dictionary is used to store the appointsments associated with each day //
     var sortedAppointments: Dictionary<String, [Appointment]>!
     
     init() {
@@ -52,6 +59,8 @@ class AppointmentManager {
     }
     
     //-- Helpers --//
+    
+    // This generate 50 random appointments to give our Calendar/Agenda views some data //
     func generateAppointments() {
         for _ in 0...50 {
             // Properties to randomize appointments //
@@ -62,8 +71,10 @@ class AppointmentManager {
             let currentHour = Calendar.current.component(.hour, from: Date())
             let currentMinute = Calendar.current.component(.minute, from: Date())
             
+            // Random date component //
             let dateComps = DateComponents.init(calendar: Calendar.current, timeZone: Calendar.current.timeZone, era: nil, year: 2018, month: abs(randomMonth - currentMonth + randomValue), day: abs(randomMonth + currentDay), hour: (24 - currentHour + randomValue), minute: (60 - currentMinute + randomValue), second: nil, nanosecond: nil, weekday: randomValue, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
             
+            // Create appointment object //
             let appointment = Appointment(title: self.randoTitles[randomValue], location: self.randoAddresses[randomValue], dateTime: Calendar.current.date(from: dateComps)!, members: self.randoMembers, duration: self.randoDurations[randomValue])
             
             // Set indicator to true or false //
@@ -73,16 +84,18 @@ class AppointmentManager {
                 appointment.available = false
             }
             
+            // Append all appointments to an array //
             self.appointments.append(appointment)
         }
         
-        // Custom appointment //
+        // Custom appointment (Maybe a real appointment in the near future ;) ) //
         let customApt = Appointment(title: "Welcome Alec to Outlook!", location: "1 Microsoft Way, Redmond, WA 98052", dateTime: Date(), members: ["Alec", "Alon"], duration: "All day")
         customApt.available = true
         
         self.appointments.append(customApt)
     }
     
+    // Now that there is mock data, they need to be sorted in ascending order //
     func sortAppointments() {
         self.appointments.forEach { (appointment) in
             // Create date string key //

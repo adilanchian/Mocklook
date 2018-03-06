@@ -6,6 +6,12 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This is the root ViewController that will hold the Agenda and Calendar view.
+    This controller also conforms to the DateSyncDelegate which is used to
+    update each view based on interaction with one another.
+*/
+
 import UIKit
 
 class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
@@ -14,7 +20,6 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     var agenda: AgendaTableViewController!
     var calendarManager: CalendarManager!
     var weekView: UIView!
-    let weekBar = ["S", "M", "T", "W", "T", "F", "S"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +36,9 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // Make sure we can access the cell and set the selected attribute on it //
         let selectedCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell
-        selectedCell?.backgroundColor = calenderSelectedColor
-        selectedCell?.dayLabel.textColor = UIColor.white
+        selectedCell?.selectCell()
     }
     
     //-- Helpers --//
@@ -59,16 +64,18 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
             borderBottom.backgroundColor = separatorColor.cgColor
             label.layer.addSublayer(borderBottom)
             
+            // Add to subview and then make sure next x coordinate is to the right of it //
             self.weekView.addSubview(label)
             currentX = currentX + Int(self.weekView.frame.width / 7)
         }
-        self.view.addSubview(self.weekView)
         
+        self.view.addSubview(self.weekView)
         print("Week view setup.")
     }
     
     func setupCalenderView() {
         self.calendar = CalendarCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        // Account for the status bar and the height of the week bar //
         self.calendar.view.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4))
         self.addChildViewController(self.calendar)
         self.view.addSubview(self.calendar.calenderCollectionView)
@@ -83,6 +90,8 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     
     func setupAgendaView() {
         self.agenda = AgendaTableViewController()
+        
+        // Account for the ending position of the calendar view //
         self.agenda.view.frame = CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: screenSize.height - (screenSize.height * 0.4))
         self.addChildViewController(self.agenda)
         self.view.addSubview(self.agenda.agendaTableView)
@@ -98,7 +107,6 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     
     //-- DateSyncDelegate --//
     func changeCurrentCalendarDate(stringDate: String) {
-        print("[CalendarAgendaView] Received new date from Agenda: \(stringDate)")
         
         // Calculate what indexPath this corresponds to in the calendar //
         guard let path = self.calendarManager.calculateCalendarPath(stringDate: stringDate) else {
@@ -108,7 +116,6 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         
         // Remove background color on current selection //
         if let currentCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell {
-            
             currentCell.deselectCell()
         }
         
@@ -125,14 +132,11 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     func changeCurrentAgendaDate(dayPath: IndexPath) {
-        print("[CalendarAgendaView] Received new date from Calendar: \(dayPath)")
-        
         // Calculate what indexPath this corresponds to in the calendar //
         let path = self.calendarManager.calculateAgendaPath(dayPath: dayPath)
         
         // Remove background color on current selection //
         if let currentCell = self.calendar.calenderCollectionView.cellForItem(at: self.calendar.currentSelection) as? CalendarCollectionViewCell {
-            
             currentCell.deselectCell()
         }
         
@@ -149,8 +153,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     func agendaIsActive() {
-        // If calendar is expanded, shrink //
-        print("Agenda is active...")
+        // If using the agenda view, shrink the calender view //
         if self.calendar.isExpanded {
             self.calendar.isExpanded = false
             self.agenda.isExpanded = true
@@ -164,7 +167,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     func calendarIsActive() {
-        print("Calendar is active...")
+        // If using the calendar view, shrink the agenda view //
         if self.agenda.isExpanded {
             self.agenda.isExpanded = false
             self.calendar.isExpanded = true

@@ -6,6 +6,12 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This is the appointment class that is used to handle the layout of an appointment
+    and manipulate them in any way necessary. This is also where we bring in the SwiftSky
+    framework to get the real time temperature for each appointment location.
+*/
+
 import Foundation
 import SwiftSky
 
@@ -56,7 +62,6 @@ class Appointment {
             SwiftSky.get([.current], at: coordinates, { (result) in
                 switch result {
                 case .success(let forecast):
-                    print(forecast.current!.temperature!.current!.label)
                     self.temperature = forecast.current!.temperature!.current!.label
                 case .failure(let error):
                     print("There was an error getting the temperature: \(error)")

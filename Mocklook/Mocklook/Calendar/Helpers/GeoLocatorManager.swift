@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This class handles the coordinate fetching of each appointment location that is created.
+    This also prepares a CLLocation object to be ingested by the Forecasting API.
+*/
+
 import Foundation
 import CoreLocation
 

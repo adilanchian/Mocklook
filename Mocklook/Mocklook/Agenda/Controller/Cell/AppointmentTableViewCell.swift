@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This is the table view cell class that will handle setting up and tearing down the
+    reusable agenda cells.
+*/
+
 import UIKit
 
 class AppointmentTableViewCell: UITableViewCell {
@@ -75,10 +80,11 @@ class AppointmentTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        // Add labels to cell //
+        // Add elements to cell //
         self.addSubviews()
     }
     
+    // Make sure to tear down reusable so old data does not persist //
     override func prepareForReuse() {
         super.prepareForReuse()
         let subviews = self.subviews
@@ -110,10 +116,9 @@ class AppointmentTableViewCell: UITableViewCell {
     
     //-- Helpers --//
     func addSubviews() {
+        // Padding for the cell view is certain spots //
         let outerPadding = CGFloat(15)
         let innerPadding = CGFloat(8)
-        
-        //self.backgroundColor = UIColor.gray
         
         // Create uiview to hold titleLabel && locationLabel //
         let descriptionView = UIView()
@@ -126,65 +131,55 @@ class AppointmentTableViewCell: UITableViewCell {
         // Location label layout //
         self.locationLabel.frame = CGRect(x: 0, y: (self.titleLabel.frame.height + innerPadding), width: descriptionView.frame.width, height: (descriptionView.frame.height - self.titleLabel.frame.height - innerPadding))
         
-        // Add Title and location label //
+        // Add Title and location label to description view //
         descriptionView.addSubview(self.titleLabel)
         descriptionView.addSubview(self.locationLabel)
-        
-        // Add description view to cell view //
-        self.addSubview(descriptionView)
         
         // Indicator layout //
         self.availabilityIndicator.frame = CGRect(x: (descriptionView.frame.minX - outerPadding * 1.5), y: outerPadding * 1.3, width: 12, height: 12)
         
-        // Add to subview //
-        self.addSubview(self.availabilityIndicator)
-        
         // Date Time Layout //
         self.dateTimeLabel.frame = CGRect(x: (self.availabilityIndicator.frame.minX - self.frame.width * 0.15 - (outerPadding * 1.5) ), y: (outerPadding * 1.1), width: (self.frame.width * 0.15), height: self.titleLabel.frame.height)
-        
-        // Add to subview //
-        self.addSubview(self.dateTimeLabel)
         
         // Temperature label layout //
         self.tempLabel.frame = CGRect(x: (self.availabilityIndicator.frame.minX - self.frame.width * 0.15 - (outerPadding * 1.5)), y: (descriptionView.frame.maxY - outerPadding), width: self.dateTimeLabel.frame.maxX, height: (self.dateTimeLabel.frame.maxY))
 
-        self.addSubview(self.tempLabel)
-        
         // No Events Layout //
         self.noEventsLabel.frame = CGRect(x: (self.frame.minX + outerPadding), y: outerPadding, width: self.dateTimeLabel.frame.width, height: self.dateTimeLabel.frame.height)
         
-        // Add to subview //
+        // Add all elements to cell subview //
+        self.addSubview(descriptionView)
+        self.addSubview(self.availabilityIndicator)
+        self.addSubview(self.dateTimeLabel)
+        self.addSubview(self.tempLabel)
         self.addSubview(self.noEventsLabel)
     }
     
+    // This sets the data for all the properties of the cell //
     func addCellData(appointment: Appointment?) {
         
+        // If appointment doesn't exist, go ahead and set No events //
         guard let scheduledAppointment = appointment else {
             self.noEventsLabel.text = "No events"
             self.noEventsLabel.sizeToFit()
             return
         }
         
+        // Set all properties //
         self.titleLabel.text = scheduledAppointment.title
         self.locationLabel.text = scheduledAppointment.location
         self.dateTimeLabel.text = scheduledAppointment.localizedTime
         self.tempLabel.text = scheduledAppointment.temperature
         
+        // Change the indicator color depending on status //
         if scheduledAppointment.available {
             self.availabilityIndicator.backgroundColor = availIndicatorColor
         } else {
             self.availabilityIndicator.backgroundColor = pendingIndicatorColor
         }
         
-        // Size to fit //
+        // Resize labels after content is populated //
         self.dateTimeLabel.sizeToFit()
         self.tempLabel.sizeToFit()
     }
-
-    /*override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }*/
-
 }

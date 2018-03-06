@@ -6,6 +6,10 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    Here we have the unit tests for Mocklook. I have added what I felt was the most important tests.
+*/
+
 import XCTest
 
 class MocklookTests: XCTestCase {

@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This is the class for the calendar cells. This holds any and all logic for each cell.
+    It also implements "prepareForReuse" so any recyled cells do not have old data.
+*/
+
 import UIKit
 
 class CalendarCollectionViewCell: UICollectionViewCell {
@@ -61,7 +66,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
             self.backgroundColor = UIColor.white
         }
         
-        // Text for collection view cell //
+        // Text for collection view cell. +1 because row returns on index //
         var dayText = "\(monthDayPath.row + 1)"
         
         // If it is the first of the month, add the month string to the cell //
@@ -80,7 +85,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     func deselectCell() {
-        // Change back to disabled color if cell was disabled //
+        // If cell was orignally disabled, make sure to gray it out //
         if self.isDisabled {
             self.backgroundColor = disabledColor
         } else {

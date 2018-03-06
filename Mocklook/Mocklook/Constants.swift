@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This swift file is a spot to hold all constant properties that will be used throughout
+    the app.
+*/
+
 import Foundation
 import UIKit
 

@@ -6,6 +6,12 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This is the calendar view, view controller! This is a collection view that is populated
+    with 365 cells that scroll continuosly (year of 2018) that are separated into sections
+    by each month of the year.
+*/
+
 import UIKit
 
 class CalendarCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -41,7 +47,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Each section should have number of days in month //
+        // Each section should have number of days in month. +1 because date components requires it //
         return calendarManager.numDaysByMonth(month: section + 1)
     }
 
@@ -55,21 +61,20 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // If an item is selected, let the agenda know that it needs to update //
         if self.delegate != nil {
             self.delegate?.changeCurrentAgendaDate(dayPath: indexPath)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            return CGSize(width: self.calenderCollectionView.frame.width, height: 4.0)
-        } else {
-            return CGSize.zero
-        }
+        // gets rid of any gap between sections //
+        return CGSize.zero
     }
     
     //-- Scroll View --//
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // If an scrolling has begun, the calendar is active //
         if self.delegate != nil {
             self.delegate?.calendarIsActive()
         }
@@ -79,11 +84,14 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     func setupCollectionView() {
         // Set layout for collection view //
         let layout = UICollectionViewFlowLayout()
+        // Divided by 7 so the width can always fit 7 items //
         layout.itemSize = CGSize(width: (screenSize.width / 7), height: (screenSize.width / 7))
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.headerReferenceSize = CGSize(width: screenSize.width, height: 4.0)
         layout.sectionHeadersPinToVisibleBounds = true
+        
+        // Instantiate collection view //
         self.calenderCollectionView = UICollectionView(frame: CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4)), collectionViewLayout: layout)
         self.calenderCollectionView.backgroundColor = UIColor.white
         
@@ -98,9 +106,6 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         // Register cell class //
         self.calenderCollectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: "DayCell")
         
-        // Register header class //
-        self.calenderCollectionView.register(WeekdaysCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "WeekDays")
-        
         // Add to subview //
         self.view.addSubview(self.calenderCollectionView)
         print("Collection view controller setup.")
@@ -114,8 +119,8 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     }
     
     func expand() {
+        // Expand height of calendar view //
         UIView.animate(withDuration: 0.2) {
-            // Expand height of calendar view //
             self.calenderCollectionView.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4))
         }
     }

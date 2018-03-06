@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This is the agenda view controller! This is a table view controller that handles all
+    the interactions with the agenda view.
+*/
+
 import UIKit
 
 class AgendaTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
@@ -32,30 +37,25 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
         self.isExpanded = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // There should be a section for every day in the calendar //
         return self.calendarManager.sectionDays.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Get the key from dictionary //
+        // Get the key from dictionary. A dictionary is used to associate the day with an array of Appointments //
         var sectionString = self.calendarManager.sectionDays[section]
         
+        // Need to remove the 'Today · ' string when checking for key //
         if sectionString.range(of: "Today · ") != nil {
             sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
         }
         
         if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
-            print("There are \(self.appointmentManager.sortedAppointments[sectionString]!.count) appointments for section: \(sectionString).")
             return self.appointmentManager.sortedAppointments[sectionString]!.count
         }
         
-        // Need one cell to display "No events" message
+        // Need one cell to display "No events" message //
         return 1
     }
     
@@ -64,6 +64,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
         
         var sectionString = self.calendarManager.sectionDays[indexPath.section]
         
+        // Need to remove the 'Today · ' string when checking for key //
         if sectionString.range(of: "Today · ") != nil {
             sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
         }
@@ -80,12 +81,14 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // Setting the section header size //
         return 24
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var sectionString = self.calendarManager.sectionDays[indexPath.section]
         
+        // Need to remove the 'Today · ' string when checking for key //
         if sectionString.range(of: "Today · ") != nil {
             sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
         }
@@ -94,6 +97,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
             return 80
         }
         
+        // This is for a 'No events' cell //
         return 40
     }
     
@@ -131,12 +135,15 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
         indexPaths.forEach { (path) in
             var sectionString = self.calendarManager.sectionDays[path.section]
             
+            // Need to remove the 'Today · ' string when checking for key //
             if sectionString.range(of: "Today · ") != nil {
                 sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
             }
             
             // Get array of appointments //
             if let appointment = self.appointmentManager.sortedAppointments[sectionString]?[path.row] {
+                
+                // Attempt to get the temperature for the current location //
                 appointment.getTemperature()
             }
         }
@@ -144,6 +151,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     
     //-- Scroll View --//
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // When scrolling begins, let the calendar know the agenda is active //
         if self.delegate != nil {
             self.delegate?.agendaIsActive()
         }
@@ -165,12 +173,17 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
             // Get the label that has the title of the section to send over to Calendar View //
             headerView.subviews.forEach({ (view) in
                 if let label = view as? UILabel {
+                    
+                    // Need to remove the 'Today · ' string when checking for key //
                     if label.text?.range(of: "Today · ") != nil {
                         label.text = label.text!.replacingOccurrences(of: "Today · ", with: "")
                     }
                     
+                    // Make sure to position top most cell at the top of the view //
                     self.agendaTableView.scrollToRow(at: firstCell, at: .top, animated: true)
-                    self.delegate?.changeCurrentCalendarDate(stringDate: label.text!)
+                    
+                    // Time to update the calender! //
+                    self.delegate!.changeCurrentCalendarDate(stringDate: label.text!)
                 }
             })
         }
@@ -185,6 +198,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
         if !decelerate {
             // Send delegate message //
             if self.delegate != nil {
+                
                 // Get uiview for header view //
                 guard let headerView = self.tableView(self.agendaTableView, viewForHeaderInSection: firstCell.section) else {
                     print("Could not grab header section view. Returning.")
@@ -198,6 +212,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
                             label.text = label.text!.replacingOccurrences(of: "Today · ", with: "")
                         }
                         
+                        // Time to update teh calendar ! //
                         self.delegate?.changeCurrentCalendarDate(stringDate: label.text!)
                     }
                 })
@@ -233,15 +248,15 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     }
     
     func expand() {
+        // Expand size of agenda view and move up //
         UIView.animate(withDuration: 0.2) {
-            // Expand size of agenda view and move up //
             self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.height * 0.3), width: screenSize.width, height: (screenSize.height - (screenSize.height * 0.3)))
         }
     }
     
     func shrink() {
+        // Shrink size of agenda view and move down //
         UIView.animate(withDuration: 0.2) {
-            // Shrink size of agenda view and move down //
             self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: (screenSize.height - screenSize.height * 0.4))
             
         }

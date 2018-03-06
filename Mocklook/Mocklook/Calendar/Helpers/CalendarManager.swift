@@ -6,6 +6,11 @@
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
+/*
+    This class holds all the logic for dealing with calendar events such as getting current days,
+    making sure IndexPaths are converted properly, and much more!
+*/
+
 import Foundation
 
 class CalendarManager {
@@ -18,6 +23,7 @@ class CalendarManager {
     var currentDay: Int!
     var sectionDays: [String]!
     var currentDate: Date {
+        // Setting up a component to get the current Date object via components //
         get {
             let components = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: self.currentMonth, day: self.currentDay, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
             
@@ -25,6 +31,7 @@ class CalendarManager {
         }
     }
     var todayDateSection: Int {
+        // Get the current number of days in the current month //
         get {
             let startDateComps = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: 1, day: 1, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
             let startDay = self.calendar.date(from: startDateComps)
@@ -35,6 +42,7 @@ class CalendarManager {
     }
     
     var friendlyMonth: String {
+        // Return a string that can be used in the UI //
         get {
             let formatter = DateFormatter()
             // We subtract 1 because we need the index of the monthSymbols //
@@ -71,6 +79,8 @@ class CalendarManager {
         // Create start date object for Jan 1 of current year //
         let startDateComps = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: 1, day: 1, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         var day = self.calendar.date(from: startDateComps)
+        
+        // Create end date object of current year //
         let endDateComps = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: 12, day: 31, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         let endDate = self.calendar.date(from: endDateComps)
         let formatter = DateFormatter()
@@ -87,6 +97,7 @@ class CalendarManager {
         }
     }
     
+    // This helper function returns an IndexPath, for the calendar to ingest, based on the current agenda selection //
     func calculateCalendarPath(stringDate: String) -> IndexPath? {
         // Create Date object from string //
         let formatter = DateFormatter()
@@ -107,6 +118,7 @@ class CalendarManager {
         return IndexPath(item: dayIndex, section: monthIndex)
     }
     
+    // This helper function returns an IndexPath, for the agenda to ingest, based on the current calendar selection //
     func calculateAgendaPath(dayPath: IndexPath) -> IndexPath {
         var numDays = 0
         

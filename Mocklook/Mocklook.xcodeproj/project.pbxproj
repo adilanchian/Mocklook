@@ -29,7 +29,6 @@
 		DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */; };
 		DDF339A7204B910F007E7CCD /* CalendarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */; };
 		DDF339AA204B91ED007E7CCD /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */; };
-		DDF339AC204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +66,6 @@
 		DDF339A4204B715B007E7CCD /* CalendarAgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAgendaViewController.swift; sourceTree = "<group>"; };
 		DDF339A6204B910F007E7CCD /* CalendarCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewController.swift; sourceTree = "<group>"; };
 		DDF339A9204B91ED007E7CCD /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
-		DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysCollectionReusableView.swift; sourceTree = "<group>"; };
 		FC758145EF921F766D7A372F /* Pods_Mocklook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mocklook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE36AAD0D4132B7ECEAD2F2 /* Pods_MocklookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MocklookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -185,12 +183,12 @@
 		DDF3395F204B506B007E7CCD /* Mocklook */ = {
 			isa = PBXGroup;
 			children = (
+				DDF33960204B506B007E7CCD /* AppDelegate.swift */,
+				DDF339A1204B6D7E007E7CCD /* Constants.swift */,
 				DDF339A3204B7111007E7CCD /* CalenderAgenda */,
 				DDF33980204B526F007E7CCD /* Calendar */,
 				DD43BED2204BDB200094643F /* Agenda */,
 				DD43BED5204BDB550094643F /* Models */,
-				DDF33960204B506B007E7CCD /* AppDelegate.swift */,
-				DDF339A1204B6D7E007E7CCD /* Constants.swift */,
 				DDF33964204B506B007E7CCD /* Main.storyboard */,
 				DDF33967204B506B007E7CCD /* Assets.xcassets */,
 				DDF33969204B506B007E7CCD /* LaunchScreen.storyboard */,
@@ -222,7 +220,6 @@
 			children = (
 				DDF3398F204B60D1007E7CCD /* CalendarManager.swift */,
 				DDC284DF204E653C00914601 /* GeoLocatorManager.swift */,
-				DDF339AB204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -476,7 +473,6 @@
 				DD43BEDB204BE04B0094643F /* AppointmentManager.swift in Sources */,
 				DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */,
 				DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */,
-				DDF339AC204BA4D1007E7CCD /* WeekdaysCollectionReusableView.swift in Sources */,
 				DD97FC6A204C799100EBE00E /* Appointment.swift in Sources */,
 				DD97FC6D204C7DF800EBE00E /* AppointmentTableViewCell.swift in Sources */,
 			);
