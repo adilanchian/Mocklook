@@ -63,11 +63,12 @@ class CalendarManager {
         // Create start date object for Jan 1 of current year //
         let startDateComps = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: 1, day: 1, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         var day = self.calendar.date(from: startDateComps)
-        let endDate = Date()
+        let endDateComps = DateComponents(calendar: self.calendar, timeZone: self.calendar.timeZone, era: nil, year: self.currentYear, month: 12, day: 31, hour: nil, minute: nil, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+        let endDate = self.calendar.date(from: endDateComps)
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMMM d"
         
-        while day! <= endDate {
+        while day! <= endDate! {
             if self.currentDate == day! {
                 self.sectionDays.append("Today · "+formatter.string(from: day!))
             } else {
@@ -99,8 +100,12 @@ class CalendarManager {
     }
     
     func calculateAgendaPath(dayPath: IndexPath) -> IndexPath {
+        var numDays = 0
+        
         // Get num days in month //
-        let numDays = self.numDaysByMonth(month: dayPath.section)
+        for index in 1...dayPath.section {
+            numDays = numDays + self.numDaysByMonth(month: index)
+        }
         
         // Get num days in month and then add day //
         let daySection = numDays + dayPath.row
