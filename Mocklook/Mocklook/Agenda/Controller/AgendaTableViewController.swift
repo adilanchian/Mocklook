@@ -170,7 +170,7 @@ class AgendaTableViewController: UITableViewController {
     //-- Helpers --//
     func setupTableView() {
         // Instantiate table view //
-        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY / 3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY / 3)), style: .plain)
+        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY * 0.4), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.4)), style: .plain)
         
         // Set delegates //
         self.agendaTableView.delegate = self
@@ -203,7 +203,7 @@ class AgendaTableViewController: UITableViewController {
     func shrink() {
         UIView.animate(withDuration: 0.2) {
             // Shrink size of agenda view and move down //
-            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.3), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.3))
+            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.4), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.4))
             
         }
     }

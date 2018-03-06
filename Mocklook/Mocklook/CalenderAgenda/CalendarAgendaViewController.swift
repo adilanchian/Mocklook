@@ -34,7 +34,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     //-- Helpers --//
     func setupCalenderView() {
         self.calendar = CalendarCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        self.calendar.view.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height / 3)
+        self.calendar.view.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: (screenSize.height * 0.4))
         self.addChildViewController(self.calendar)
         self.view.addSubview(self.calendar.calenderCollectionView)
         
@@ -48,7 +48,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     
     func setupAgendaView() {
         self.agenda = AgendaTableViewController()
-        self.agenda.view.frame = CGRect(x: 0, y: screenSize.height / 3, width: screenSize.width, height: screenSize.height - screenSize.height / 3)
+        self.agenda.view.frame = CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: screenSize.height - (screenSize.height * 0.4))
         self.addChildViewController(self.agenda)
         self.view.addSubview(self.agenda.agendaTableView)
         
