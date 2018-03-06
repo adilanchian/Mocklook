@@ -31,9 +31,9 @@ This view consists of a calendar view up top and a list of appointments beneath 
 ## Features
 Mocklook has the following features:
 
-- Compatible for all screen sizes 
+- Compatible with all screen sizes 
 - Continuous scroll feature of both the calendar and agenda views (Spanning through the year 2018)
-- Calendar and Agenda view allow a person to browse through days of the year
+- Calendar and Agenda view allowing the user to browse through days of the year
 - Tap a date on the Calendar view to see the Agenda view update as well
 - Use the Agenda view to move between dates and watch the Calendar view update
 - Fluid expansion and shrinking of both the Calendar and Agenda views 
