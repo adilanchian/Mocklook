@@ -153,6 +153,7 @@ class AgendaTableViewController: UITableViewController {
                         label.text = label.text!.replacingOccurrences(of: "Today · ", with: "")
                     }
                     
+                    self.agendaTableView.scrollToRow(at: firstCell, at: .top, animated: true)
                     self.delegate?.changeCurrentCalendarDate(stringDate: label.text!)
                 }
             })

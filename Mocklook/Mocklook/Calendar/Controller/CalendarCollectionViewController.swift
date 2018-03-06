@@ -60,18 +60,6 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         }
     }
     
-    //-- UICollectionViewDelegate --//
-    /* override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        if indexPath.section == 0 {
-            if let weekdaysView = self.calenderCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "WeekDays", for: indexPath) as? WeekdaysCollectionReusableView {
-                return weekdaysView
-            }
-        }
-        
-        return UICollectionReusableView()
-     } */
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
             return CGSize(width: self.calenderCollectionView.frame.width, height: 4.0)
