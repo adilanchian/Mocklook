@@ -12,7 +12,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     //-- UI Properties --//
     let dayLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: screenSize.maxX / 7, height: screenSize.maxX / 7)
+        label.frame = CGRect(x: 0, y: 0, width: screenSize.width / 7, height: screenSize.width / 7)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)

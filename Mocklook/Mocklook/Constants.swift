@@ -21,3 +21,4 @@ let calenderSelectedColor = UIColor(red:0.00, green:0.47, blue:0.85, alpha:0.5)
 
 //-- Device Screen Size --//
 let screenSize = UIScreen.main.bounds
+let statusBarSize = UIApplication.shared.statusBarFrame

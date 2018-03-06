@@ -17,12 +17,11 @@ class WeekdaysCollectionReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.container = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.maxX, height: screenSize.maxX / 7))
+        self.container = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.width / 7))
         self.labelArray = [UILabel]()
         
         for index in 0...self.weekdays.count - 1 {
             let dayLabel = UILabel()
-            // dayLabel.frame = CGRect(x: 0, y: 0, width: screenSize.maxX / 7, height: screenSize.maxX / 7)
             dayLabel.textAlignment = .center
             dayLabel.font = UIFont.systemFont(ofSize: 16)
             dayLabel.textColor = grayTextColor

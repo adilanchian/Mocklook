@@ -34,6 +34,14 @@ class CalendarManager {
         }
     }
     
+    var friendlyMonth: String {
+        get {
+            let formatter = DateFormatter()
+            // We subtract 1 because we need the index of the monthSymbols //
+            return formatter.monthSymbols[self.currentMonth - 1]
+        }
+    }
+    
     init() {
         let date = Date()
         self.currentYear = calendar.component(.year, from: date)
@@ -103,8 +111,12 @@ class CalendarManager {
         var numDays = 0
         
         // Get num days in month //
-        for index in 1...dayPath.section {
-            numDays = numDays + self.numDaysByMonth(month: index)
+        if dayPath.section == 0 {
+            return IndexPath(row: 0, section: dayPath.row)
+        } else {
+            for index in 1...dayPath.section {
+                numDays = numDays + self.numDaysByMonth(month: index)
+            }
         }
         
         // Get num days in month and then add day //

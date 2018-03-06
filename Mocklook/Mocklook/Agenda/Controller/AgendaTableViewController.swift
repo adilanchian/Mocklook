@@ -103,7 +103,7 @@ class AgendaTableViewController: UITableViewController {
     
         // Create UILabel //
         let dateLabel = UILabel()
-        dateLabel.frame = CGRect(x: 15, y: 0, width: screenSize.maxX, height: 24)
+        dateLabel.frame = CGRect(x: 15, y: 0, width: screenSize.width, height: 24)
         dateLabel.font = UIFont.systemFont(ofSize: 12)
         
         // Get string for section //
@@ -191,7 +191,7 @@ class AgendaTableViewController: UITableViewController {
     //-- Helpers --//
     func setupTableView() {
         // Instantiate table view //
-        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.maxY * 0.4), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.4)), style: .plain)
+        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: (screenSize.height - screenSize.height * 0.4)), style: .plain)
         
         // Set delegates //
         self.agendaTableView.delegate = self
@@ -217,14 +217,14 @@ class AgendaTableViewController: UITableViewController {
     func expand() {
         UIView.animate(withDuration: 0.2) {
             // Expand size of agenda view and move up //
-            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.2), width: screenSize.maxX, height: (screenSize.maxY - (screenSize.maxY * 0.2)))
+            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.height * 0.3), width: screenSize.width, height: (screenSize.height - (screenSize.height * 0.3)))
         }
     }
     
     func shrink() {
         UIView.animate(withDuration: 0.2) {
             // Shrink size of agenda view and move down //
-            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.maxY * 0.4), width: screenSize.maxX, height: (screenSize.maxY - screenSize.maxY * 0.4))
+            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: (screenSize.height - screenSize.height * 0.4))
             
         }
     }

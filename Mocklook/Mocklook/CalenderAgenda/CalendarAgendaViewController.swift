@@ -13,10 +13,15 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     var calendar: CalendarCollectionViewController!
     var agenda: AgendaTableViewController!
     var calendarManager: CalendarManager!
+    var weekView: UIView!
+    let weekBar = ["S", "M", "T", "W", "T", "F", "S"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.calendarManager = CalendarManager()
+        
+        print("Setting up week view...")
+        self.setupWeekView()
         
         print("Setting up calender view...")
         self.setupCalenderView()
@@ -32,9 +37,39 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     //-- Helpers --//
+    func setupWeekView() {
+        self.weekView = UIView(frame: CGRect(x: 0, y: statusBarSize.height, width: screenSize.width, height: 21))
+        
+        // For weekday symbols //
+        let formatter = DateFormatter()
+        
+        // To set label horizontally //
+        var currentX = 0
+        
+        for item in 0...6 {
+            let label = UILabel(frame: CGRect(x: currentX, y: 0, width: (Int(self.weekView.frame.width / 7)), height: 21))
+            label.text = formatter.veryShortStandaloneWeekdaySymbols[item]
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.textColor = grayTextColor
+            label.textAlignment = .center
+            
+            // Create border bottom effect //
+            let borderBottom = CALayer()
+            borderBottom.frame = CGRect(x: 0, y: label.frame.height - 1, width: label.frame.width, height: 1.0)
+            borderBottom.backgroundColor = separatorColor.cgColor
+            label.layer.addSublayer(borderBottom)
+            
+            self.weekView.addSubview(label)
+            currentX = currentX + Int(self.weekView.frame.width / 7)
+        }
+        self.view.addSubview(self.weekView)
+        
+        print("Week view setup.")
+    }
+    
     func setupCalenderView() {
         self.calendar = CalendarCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        self.calendar.view.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: (screenSize.height * 0.4))
+        self.calendar.view.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4))
         self.addChildViewController(self.calendar)
         self.view.addSubview(self.calendar.calenderCollectionView)
         

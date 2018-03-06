@@ -91,12 +91,12 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     func setupCollectionView() {
         // Set layout for collection view //
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (screenSize.maxX / 7), height: (screenSize.maxX / 7))
+        layout.itemSize = CGSize(width: (screenSize.width / 7), height: (screenSize.width / 7))
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.headerReferenceSize = CGSize(width: screenSize.width, height: 4.0)
         layout.sectionHeadersPinToVisibleBounds = true
-        self.calenderCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.4)), collectionViewLayout: layout)
+        self.calenderCollectionView = UICollectionView(frame: CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4)), collectionViewLayout: layout)
         self.calenderCollectionView.backgroundColor = UIColor.white
         
         // Remove scroll indicators //
@@ -121,14 +121,14 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     func shrink() {
         // Shrink height of calendar view //
         UIView.animate(withDuration: 0.2) {
-            self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.2))
+            self.calenderCollectionView.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.3))
         }
     }
     
     func expand() {
         UIView.animate(withDuration: 0.2) {
             // Expand height of calendar view //
-            self.calenderCollectionView.frame = CGRect(x: 0, y: 0, width: screenSize.maxX, height: (screenSize.maxY * 0.4))
+            self.calenderCollectionView.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4))
         }
     }
 }
