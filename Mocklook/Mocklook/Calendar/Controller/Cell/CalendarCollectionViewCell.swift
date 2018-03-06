@@ -17,7 +17,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = grayTextColor
-        label.text = ""
+        label.text = nil
         return label
     }()
     var isDisabled: Bool!
@@ -27,6 +27,11 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         
         // Setup all UI elements //
         self.addSubViews()
+    }
+    
+    override func prepareForReuse() {
+        self.dayLabel.textColor = grayTextColor
+        self.dayLabel.text = nil
     }
     
     required init?(coder aDecoder: NSCoder) {
