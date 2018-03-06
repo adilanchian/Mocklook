@@ -53,10 +53,10 @@ class AppointmentManager {
     
     //-- Helpers --//
     func generateAppointments() {
-        for _ in 0...25 {
+        for _ in 0...50 {
             // Properties to randomize appointments //
             let randomValue = Int(arc4random_uniform(5))
-            let randomMonth = Int(arc4random_uniform(3))
+            let randomMonth = Int(arc4random_uniform(12))
             let currentMonth = Calendar.current.component(.month, from: Date())
             let currentDay = Calendar.current.component(.day, from: Date())
             let currentHour = Calendar.current.component(.hour, from: Date())
