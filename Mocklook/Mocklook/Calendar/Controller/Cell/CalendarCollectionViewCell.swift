@@ -15,17 +15,18 @@ import UIKit
 
 class CalendarCollectionViewCell: UICollectionViewCell {
     //-- UI Properties --//
-    let dayLabel: UILabel = {
+    fileprivate let dayLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: screenSize.width / 7, height: screenSize.width / 7)
+        label.frame = CGRect(x: 0, y: 0, width: Constants.Device.screenSize.width / 7, height: Constants.Device.screenSize.width / 7)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = grayTextColor
+        label.textColor = Constants.Colors.grayTextColor
         label.text = nil
         return label
     }()
-    var isDisabled: Bool!
+    
+    fileprivate var isDisabled: Bool!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +36,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        self.dayLabel.textColor = grayTextColor
+        self.dayLabel.textColor = Constants.Colors.grayTextColor
         self.dayLabel.text = nil
     }
     
@@ -44,22 +45,22 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     }
     
     //-- Helpers --//
-    func addSubViews() {
+    fileprivate func addSubViews() {
         // Add border bottom for each cell //
         let borderBottom = CALayer()
         borderBottom.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1.0)
-        borderBottom.backgroundColor = separatorColor.cgColor
+        borderBottom.backgroundColor = Constants.Colors.separatorColor.cgColor
         self.layer.addSublayer(borderBottom)
         
         self.addSubview(self.dayLabel)
     }
     
-    func setDayLabel(monthDayPath: IndexPath) {
+    public func setDayLabel(monthDayPath: IndexPath) {
         let currentMonth = Calendar.current.component(.month, from: Date())
         
         // All cells before/after current date should be grayed out //
         if monthDayPath.section + 1 != currentMonth {
-            self.backgroundColor = disabledColor
+            self.backgroundColor = Constants.Colors.disabledColor
             self.isDisabled = true
         } else {
             self.isDisabled = false
@@ -79,19 +80,19 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         self.dayLabel.text = dayText
     }
     
-    func selectCell() {
-        self.backgroundColor = calenderSelectedColor
+    public func selectCell() {
+        self.backgroundColor = Constants.Colors.calenderSelectedColor
         self.dayLabel.textColor = UIColor.white
     }
     
-    func deselectCell() {
+    public func deselectCell() {
         // If cell was orignally disabled, make sure to gray it out //
         if self.isDisabled {
-            self.backgroundColor = disabledColor
+            self.backgroundColor = Constants.Colors.disabledColor
         } else {
             self.backgroundColor = UIColor.white
         }
         
-        self.dayLabel.textColor = grayTextColor
+        self.dayLabel.textColor = Constants.Colors.grayTextColor
     }
 }

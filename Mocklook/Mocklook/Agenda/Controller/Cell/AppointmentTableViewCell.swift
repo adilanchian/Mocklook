@@ -15,7 +15,7 @@ import UIKit
 
 class AppointmentTableViewCell: UITableViewCell {
     //-- UI Properties --//
-    var titleLabel: UILabel = {
+    fileprivate var titleLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .left
@@ -25,18 +25,18 @@ class AppointmentTableViewCell: UITableViewCell {
         return label
     }()
     
-    var locationLabel: UILabel = {
+    fileprivate var locationLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .left
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = grayTextColor
+        label.textColor = Constants.Colors.grayTextColor
         label.text = nil
         return label
     }()
     
-    var dateTimeLabel: UILabel = {
+    fileprivate var dateTimeLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .left
@@ -46,29 +46,29 @@ class AppointmentTableViewCell: UITableViewCell {
         return label
     }()
     
-    var tempLabel: UILabel = {
+    fileprivate var tempLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .center
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = grayTextColor
+        label.textColor = Constants.Colors.grayTextColor
         label.text = nil
         return label
     }()
     
-    var noEventsLabel: UILabel = {
+    fileprivate var noEventsLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         label.textAlignment = .left
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = grayTextColor
+        label.textColor = Constants.Colors.grayTextColor
         label.text = nil
         return label
     }()
     
-    var availabilityIndicator: UIView = {
+    fileprivate var availabilityIndicator: UIView = {
         let view = UIView()
         view.tag = 1
         view.frame = CGRect(x: 0, y: 0, width: 12, height: 12)
@@ -115,7 +115,7 @@ class AppointmentTableViewCell: UITableViewCell {
     }
     
     //-- Helpers --//
-    func addSubviews() {
+    fileprivate func addSubviews() {
         // Padding for the cell view is certain spots //
         let outerPadding = CGFloat(15)
         let innerPadding = CGFloat(8)
@@ -156,7 +156,7 @@ class AppointmentTableViewCell: UITableViewCell {
     }
     
     // This sets the data for all the properties of the cell //
-    func addCellData(appointment: Appointment?) {
+    public func addCellData(appointment: Appointment?) {
         
         // If appointment doesn't exist, go ahead and set No events //
         guard let scheduledAppointment = appointment else {
@@ -173,9 +173,9 @@ class AppointmentTableViewCell: UITableViewCell {
         
         // Change the indicator color depending on status //
         if scheduledAppointment.available {
-            self.availabilityIndicator.backgroundColor = availIndicatorColor
+            self.availabilityIndicator.backgroundColor = Constants.Colors.availIndicatorColor
         } else {
-            self.availabilityIndicator.backgroundColor = pendingIndicatorColor
+            self.availabilityIndicator.backgroundColor = Constants.Colors.pendingIndicatorColor
         }
         
         // Resize labels after content is populated //

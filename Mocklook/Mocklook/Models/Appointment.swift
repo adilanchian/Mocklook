@@ -17,14 +17,14 @@ import SwiftSky
 
 class Appointment {
     //-- Properties --//
-    var title: String!
-    var location: String!
-    var dateTime: Date!
-    var members: [String]!
-    var available: Bool!
-    var duration: String!
-    var temperature: String!
-    var localizedTime: String {
+    public var title: String!
+    public var location: String!
+    public var dateTime: Date!
+    public var members: [String]!
+    public var available: Bool!
+    public var duration: String!
+    public var temperature: String!
+    public var localizedTime: String {
         get {
             let formatter = DateFormatter()
             formatter.dateFormat = "h:mm a"
@@ -42,13 +42,13 @@ class Appointment {
         self.temperature = nil
         
         // Setup SwiftSky framework //
-        SwiftSky.secret = swiftSkyKey
+        SwiftSky.secret = Constants.APIKeys.swiftSkyKey
         SwiftSky.language = .english
         SwiftSky.locale = .autoupdatingCurrent
         SwiftSky.units.temperature = .fahrenheit
     }
     
-    func getTemperature() {
+    public func getTemperature() {
         let geoLocator = GeoLocatorManager()
         
         geoLocator.getCoordinates(address: self.location) { (location) in

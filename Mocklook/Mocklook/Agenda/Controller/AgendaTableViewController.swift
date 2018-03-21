@@ -21,6 +21,10 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     var delegate: DateSyncDelegate?
     var isExpanded: Bool!
     
+    // Resize CGRect //
+    let shrinkSize = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.4), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - Constants.Device.screenSize.height * 0.4))
+    let expandSize = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.3), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - (Constants.Device.screenSize.height * 0.3)))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,12 +43,12 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // There should be a section for every day in the calendar //
-        return self.calendarManager.sectionDays.count
+        return self.calendarManager.sectionDaysCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Get the key from dictionary. A dictionary is used to associate the day with an array of Appointments //
-        var sectionString = self.calendarManager.sectionDays[section]
+        var sectionString = self.calendarManager.getSectionDayString(section: section)
         
         // Need to remove the 'Today · ' string when checking for key //
         if sectionString.range(of: "Today · ") != nil {
@@ -62,7 +66,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentCell", for: indexPath) as! AppointmentTableViewCell
         
-        var sectionString = self.calendarManager.sectionDays[indexPath.section]
+        var sectionString = self.calendarManager.getSectionDayString(section: indexPath.section)
         
         // Need to remove the 'Today · ' string when checking for key //
         if sectionString.range(of: "Today · ") != nil {
@@ -86,7 +90,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var sectionString = self.calendarManager.sectionDays[indexPath.section]
+        var sectionString = self.calendarManager.getSectionDayString(section: indexPath.section)
         
         // Need to remove the 'Today · ' string when checking for key //
         if sectionString.range(of: "Today · ") != nil {
@@ -107,19 +111,19 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     
         // Create UILabel //
         let dateLabel = UILabel()
-        dateLabel.frame = CGRect(x: 15, y: 0, width: screenSize.width, height: 24)
+        dateLabel.frame = CGRect(x: 15, y: 0, width: Constants.Device.screenSize.width, height: 24)
         dateLabel.font = UIFont.systemFont(ofSize: 12)
         
         // Get string for section //
-        let sectionString = self.calendarManager.sectionDays[section]
+        let sectionString = self.calendarManager.getSectionDayString(section: section)
         
         // If string contains Today, change font color/view bg //
         if sectionString.range(of: "Today") != nil {
-            sectionView.backgroundColor = todaySectionBgColor
-            dateLabel.textColor = todaySectionTxtColor
+            sectionView.backgroundColor = Constants.Colors.todaySectionBgColor
+            dateLabel.textColor = Constants.Colors.todaySectionTxtColor
         } else {
-            sectionView.backgroundColor = disabledColor
-            dateLabel.textColor = grayTextColor
+            sectionView.backgroundColor = Constants.Colors.disabledColor
+            dateLabel.textColor = Constants.Colors.grayTextColor
         }
         
         // Set dateLabel string //
@@ -133,7 +137,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     //-- Prefetch data source --//
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { (path) in
-            var sectionString = self.calendarManager.sectionDays[path.section]
+            var sectionString = self.calendarManager.getSectionDayString(section: path.section)
             
             // Need to remove the 'Today · ' string when checking for key //
             if sectionString.range(of: "Today · ") != nil {
@@ -221,9 +225,9 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     }
     
     //-- Helpers --//
-    func setupTableView() {
+    fileprivate func setupTableView() {
         // Instantiate table view //
-        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: (screenSize.height - screenSize.height * 0.4)), style: .plain)
+        self.agendaTableView = UITableView(frame: CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.4), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - Constants.Device.screenSize.height * 0.4)), style: .plain)
         
         // Set delegates //
         self.agendaTableView.delegate = self
@@ -245,20 +249,5 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
         
         // Add UITable to view //
         self.view.addSubview(self.agendaTableView)
-    }
-    
-    func expand() {
-        // Expand size of agenda view and move up //
-        UIView.animate(withDuration: 0.2) {
-            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.height * 0.3), width: screenSize.width, height: (screenSize.height - (screenSize.height * 0.3)))
-        }
-    }
-    
-    func shrink() {
-        // Shrink size of agenda view and move down //
-        UIView.animate(withDuration: 0.2) {
-            self.agendaTableView.frame = CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: (screenSize.height - screenSize.height * 0.4))
-            
-        }
     }
 }

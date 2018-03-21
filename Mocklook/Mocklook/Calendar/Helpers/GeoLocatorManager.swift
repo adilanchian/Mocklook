@@ -15,14 +15,14 @@ import Foundation
 import CoreLocation
 
 class GeoLocatorManager {
-    var geoLocator: CLGeocoder!
+    fileprivate var geoLocator: CLGeocoder!
     
     init() {
         self.geoLocator = CLGeocoder()
     }
     
     //-- Helpers --//
-    func getCoordinates(address: String, didGetLocation: @escaping (_ location: CLLocation?) -> ()) {
+    public func getCoordinates(address: String, didGetLocation: @escaping (_ location: CLLocation?) -> ()) {
         self.geoLocator.geocodeAddressString(address) { (placemarks, error) in
             if error != nil {
                 print("Error getting coordinates: \(error!)")

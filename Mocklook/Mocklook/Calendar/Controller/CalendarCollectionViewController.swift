@@ -22,6 +22,10 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     var isExpanded: Bool!
     var delegate: DateSyncDelegate?
     
+    // Resize CGRect //
+    let shrinkSize = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.3))
+    let expandSize = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.4))
+    
     override func viewDidLoad() {
         print("Setting up collection view controller...")
         
@@ -34,7 +38,7 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         self.setupCollectionView()
         
         // Set current selection //
-        self.currentSelection = IndexPath(item: self.calendarManager.currentDay - 1, section: self.calendarManager.currentMonth - 1)
+        self.currentSelection = self.calendarManager.currentCalendarIndexPath
         
         // Set isExpanded //
         self.isExpanded = true
@@ -81,18 +85,18 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
     }
     
     //-- Helpers --//
-    func setupCollectionView() {
+    fileprivate func setupCollectionView() {
         // Set layout for collection view //
         let layout = UICollectionViewFlowLayout()
         // Divided by 7 so the width can always fit 7 items //
-        layout.itemSize = CGSize(width: (screenSize.width / 7), height: (screenSize.width / 7))
+        layout.itemSize = CGSize(width: (Constants.Device.screenSize.width / 7), height: (Constants.Device.screenSize.width / 7))
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.headerReferenceSize = CGSize(width: screenSize.width, height: 4.0)
+        layout.headerReferenceSize = CGSize(width: Constants.Device.screenSize.width, height: 4.0)
         layout.sectionHeadersPinToVisibleBounds = true
         
         // Instantiate collection view //
-        self.calenderCollectionView = UICollectionView(frame: CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4)), collectionViewLayout: layout)
+        self.calenderCollectionView = UICollectionView(frame: CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.4)), collectionViewLayout: layout)
         self.calenderCollectionView.backgroundColor = UIColor.white
         
         // Remove scroll indicators //
@@ -109,19 +113,5 @@ class CalendarCollectionViewController: UICollectionViewController, UICollection
         // Add to subview //
         self.view.addSubview(self.calenderCollectionView)
         print("Collection view controller setup.")
-    }
-    
-    func shrink() {
-        // Shrink height of calendar view //
-        UIView.animate(withDuration: 0.2) {
-            self.calenderCollectionView.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.3))
-        }
-    }
-    
-    func expand() {
-        // Expand height of calendar view //
-        UIView.animate(withDuration: 0.2) {
-            self.calenderCollectionView.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4))
-        }
     }
 }

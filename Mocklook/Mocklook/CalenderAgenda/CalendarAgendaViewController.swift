@@ -42,8 +42,8 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     //-- Helpers --//
-    func setupWeekView() {
-        self.weekView = UIView(frame: CGRect(x: 0, y: statusBarSize.height, width: screenSize.width, height: 21))
+    fileprivate func setupWeekView() {
+        self.weekView = UIView(frame: CGRect(x: 0, y: Constants.Device.statusBarSize.height, width: Constants.Device.screenSize.width, height: 21))
         
         // For weekday symbols //
         let formatter = DateFormatter()
@@ -55,13 +55,13 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
             let label = UILabel(frame: CGRect(x: currentX, y: 0, width: (Int(self.weekView.frame.width / 7)), height: 21))
             label.text = formatter.veryShortStandaloneWeekdaySymbols[item]
             label.font = UIFont.systemFont(ofSize: 12)
-            label.textColor = grayTextColor
+            label.textColor = Constants.Colors.grayTextColor
             label.textAlignment = .center
             
             // Create border bottom effect //
             let borderBottom = CALayer()
             borderBottom.frame = CGRect(x: 0, y: label.frame.height - 1, width: label.frame.width, height: 1.0)
-            borderBottom.backgroundColor = separatorColor.cgColor
+            borderBottom.backgroundColor = Constants.Colors.separatorColor.cgColor
             label.layer.addSublayer(borderBottom)
             
             // Add to subview and then make sure next x coordinate is to the right of it //
@@ -73,10 +73,10 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         print("Week view setup.")
     }
     
-    func setupCalenderView() {
+    fileprivate func setupCalenderView() {
         self.calendar = CalendarCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         // Account for the status bar and the height of the week bar //
-        self.calendar.view.frame = CGRect(x: 0, y: (statusBarSize.height + 21), width: screenSize.width, height: (screenSize.height * 0.4))
+        self.calendar.view.frame = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.4))
         self.addChildViewController(self.calendar)
         self.view.addSubview(self.calendar.calenderCollectionView)
         
@@ -88,11 +88,11 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         self.calendar.delegate = self
     }
     
-    func setupAgendaView() {
+     fileprivate func setupAgendaView() {
         self.agenda = AgendaTableViewController()
         
         // Account for the ending position of the calendar view //
-        self.agenda.view.frame = CGRect(x: 0, y: (screenSize.height * 0.4), width: screenSize.width, height: screenSize.height - (screenSize.height * 0.4))
+        self.agenda.view.frame = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.4), width: Constants.Device.screenSize.width, height: Constants.Device.screenSize.height - (Constants.Device.screenSize.height * 0.4))
         self.addChildViewController(self.agenda)
         self.view.addSubview(self.agenda.agendaTableView)
         
@@ -106,7 +106,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     }
     
     //-- DateSyncDelegate --//
-    func changeCurrentCalendarDate(stringDate: String) {
+    internal func changeCurrentCalendarDate(stringDate: String) {
         
         // Calculate what indexPath this corresponds to in the calendar //
         guard let path = self.calendarManager.calculateCalendarPath(stringDate: stringDate) else {
@@ -131,7 +131,7 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         self.calendar.currentSelection = path
     }
     
-    func changeCurrentAgendaDate(dayPath: IndexPath) {
+    internal func changeCurrentAgendaDate(dayPath: IndexPath) {
         // Calculate what indexPath this corresponds to in the calendar //
         let path = self.calendarManager.calculateAgendaPath(dayPath: dayPath)
         
@@ -152,31 +152,31 @@ class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
         self.agenda.agendaTableView.scrollToRow(at: path, at: .top, animated: true)
     }
     
-    func agendaIsActive() {
+    internal func agendaIsActive() {
         // If using the agenda view, shrink the calender view //
         if self.calendar.isExpanded {
             self.calendar.isExpanded = false
             self.agenda.isExpanded = true
             
             // Shrink calendar //
-            self.calendar.shrink()
+            self.calendar.calenderCollectionView.animateResize(duration: 0.2, newSize: self.calendar.shrinkSize)
             
             // Expand agenda //
-            self.agenda.expand()
+            self.agenda.agendaTableView.animateResize(duration: 0.2, newSize: self.agenda.expandSize)
         }
     }
     
-    func calendarIsActive() {
+    internal func calendarIsActive() {
         // If using the calendar view, shrink the agenda view //
         if self.agenda.isExpanded {
             self.agenda.isExpanded = false
             self.calendar.isExpanded = true
             
             // Shrink agenda //
-            self.agenda.shrink()
+            self.agenda.agendaTableView.animateResize(duration: 0.2, newSize: self.agenda.shrinkSize)
             
             // Expand calendar //
-            self.calendar.expand()
+            self.calendar.calenderCollectionView.animateResize(duration: 0.2, newSize: self.calendar.expandSize)
         }
     }
 }
