@@ -8,7 +8,7 @@ Starting back almost two years ago, I created my first iOS/watchOS app called
 Cycles - Daily Habit Creator (https://www.getcyclesappp.com). 
 Other then that, here are some fun facts about me:
 
-- I stream programming on Twitch (https://www.twitch.tv/adilanchian)
+- I stream programming on Twitch (https://www.twitch.tv/pixelogicdev)
 - Huge heavy metal music fan \m/
 - Massive foody
 - Have an extremely large passion for passing along the knowledge I have in programming to others
