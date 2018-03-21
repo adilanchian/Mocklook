@@ -16,15 +16,15 @@ import UIKit
 
 class CalendarCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     //-- Properties --//
-    var calendarManager: CalendarManager!
-    var calenderCollectionView: UICollectionView!
-    var currentSelection: IndexPath!
-    var isExpanded: Bool!
-    var delegate: DateSyncDelegate?
+    fileprivate var calendarManager: CalendarManager!
+    public var calenderCollectionView: UICollectionView!
+    public var currentSelection: IndexPath!
+    public var isExpanded: Bool!
+    public var delegate: DateSyncDelegate?
     
     // Resize CGRect //
-    let shrinkSize = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.3))
-    let expandSize = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.4))
+    public let shrinkSize = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.3))
+    public let expandSize = CGRect(x: 0, y: (Constants.Device.statusBarSize.height + 21), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height * 0.4))
     
     override func viewDidLoad() {
         print("Setting up collection view controller...")

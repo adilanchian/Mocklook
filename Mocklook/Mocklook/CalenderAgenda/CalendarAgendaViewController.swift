@@ -16,10 +16,10 @@ import UIKit
 
 class CalendarAgendaViewController: UIViewController, DateSyncDelegate {
     //-- Properties --//
-    var calendar: CalendarCollectionViewController!
-    var agenda: AgendaTableViewController!
-    var calendarManager: CalendarManager!
-    var weekView: UIView!
+    fileprivate var calendar: CalendarCollectionViewController!
+    fileprivate var agenda: AgendaTableViewController!
+    fileprivate var calendarManager: CalendarManager!
+    fileprivate var weekView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

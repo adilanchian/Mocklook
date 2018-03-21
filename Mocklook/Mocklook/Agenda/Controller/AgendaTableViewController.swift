@@ -15,15 +15,15 @@ import UIKit
 
 class AgendaTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
     //-- Properties --//
-    let appointmentManager = AppointmentManager()
-    let calendarManager = CalendarManager()
-    var agendaTableView: UITableView!
-    var delegate: DateSyncDelegate?
-    var isExpanded: Bool!
+    fileprivate let appointmentManager = AppointmentManager()
+    fileprivate let calendarManager = CalendarManager()
+    public var agendaTableView: UITableView!
+    public var delegate: DateSyncDelegate?
+    public var isExpanded: Bool!
     
     // Resize CGRect //
-    let shrinkSize = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.4), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - Constants.Device.screenSize.height * 0.4))
-    let expandSize = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.3), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - (Constants.Device.screenSize.height * 0.3)))
+    public let shrinkSize = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.4), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - Constants.Device.screenSize.height * 0.4))
+    public let expandSize = CGRect(x: 0, y: (Constants.Device.screenSize.height * 0.3), width: Constants.Device.screenSize.width, height: (Constants.Device.screenSize.height - (Constants.Device.screenSize.height * 0.3)))
     
     override func viewDidLoad() {
         super.viewDidLoad()
