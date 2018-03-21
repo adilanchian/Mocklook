@@ -1,30 +1,27 @@
 //
-//  AppointmentHandler.swift
+//  AppointmentDataSource.swift
 //  Mocklook
 //
-//  Created by Alec Dilanchian on 3/4/18.
+//  Created by Alec Dilanchian on 3/20/18.
 //  Copyright © 2018 Alec Dilanchian. All rights reserved.
 //
 
-/*
-    This class is the appointment handles anything to do with appointments. It creates mock
-    data that is randomized for a set array. DISCLAIMER: all addresses were pulled from a random address generator, except the Microsoft address.
-*/
-
 import Foundation
 
-class AppointmentManager {
-    var appointments: [Appointment]!
-    var randoAddresses: [String]!
-    var randoTitles: [String]!
-    var randoTime: [Date]!
-    var randoMembers: [String]!
-    var randoDurations: [String]!
+class AppointmentDataSource {
+    //-- Properties --//
+    fileprivate var appointments: [Appointment]!
+    fileprivate var randoAddresses: [String]!
+    fileprivate var randoTitles: [String]!
+    fileprivate var randoTime: [Date]!
+    fileprivate var randoMembers: [String]!
+    fileprivate var randoDurations: [String]!
     
     // A dictionary is used to store the appointsments associated with each day //
-    var sortedAppointments: Dictionary<String, [Appointment]>!
+    public var sortedAppointments: Dictionary<String, [Appointment]>!
     
     init() {
+        self.sortedAppointments = Dictionary<String, [Appointment]>()
         self.appointments = [Appointment]()
         self.randoAddresses = [
             "991 Spring Lane Portsmouth, VA 23703",
@@ -55,13 +52,15 @@ class AppointmentManager {
             "1h",
             "112d 19h"
         ]
-        self.sortedAppointments = Dictionary<String, [Appointment]>()
+        
+        // Generate and sort random appointments //
+        self.generateAppointments()
     }
     
     //-- Helpers --//
     
     // This generate 50 random appointments to give our Calendar/Agenda views some data //
-    func generateAppointments() {
+    fileprivate func generateAppointments() {
         for _ in 0...50 {
             // Properties to randomize appointments //
             let randomValue = Int(arc4random_uniform(5))
@@ -91,12 +90,14 @@ class AppointmentManager {
         // Custom appointment (Maybe a real appointment in the near future ;) ) //
         let customApt = Appointment(title: "Welcome Alec to Outlook!", location: "1 Microsoft Way, Redmond, WA 98052", dateTime: Date(), members: ["Alec", "Alon"], duration: "All day")
         customApt.available = true
-        
         self.appointments.append(customApt)
+        
+        // Sort appointments //
+        self.sortAppointments()
     }
     
     // Now that there is mock data, they need to be sorted in ascending order //
-    func sortAppointments() {
+    fileprivate func sortAppointments() {
         self.appointments.forEach { (appointment) in
             // Create date string key //
             let formatter = DateFormatter()

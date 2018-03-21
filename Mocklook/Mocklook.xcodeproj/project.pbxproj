@@ -19,6 +19,7 @@
 		DDC284E1204E653C00914601 /* GeoLocatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC284DF204E653C00914601 /* GeoLocatorManager.swift */; };
 		DDDA3316204D99F3008EEF12 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDA3315204D99F3008EEF12 /* Protocols.swift */; };
 		DDE37E672061EDCF0037C6A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE37E662061EDCF0037C6A2 /* Extensions.swift */; };
+		DDE37E6A2061F48E0037C6A2 /* AppointmentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE37E692061F48E0037C6A2 /* AppointmentDataSource.swift */; };
 		DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF33960204B506B007E7CCD /* AppDelegate.swift */; };
 		DDF33966204B506B007E7CCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF33964204B506B007E7CCD /* Main.storyboard */; };
 		DDF33968204B506B007E7CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF33967204B506B007E7CCD /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		DDC284DF204E653C00914601 /* GeoLocatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocatorManager.swift; sourceTree = "<group>"; };
 		DDDA3315204D99F3008EEF12 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DDE37E662061EDCF0037C6A2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DDE37E692061F48E0037C6A2 /* AppointmentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDataSource.swift; sourceTree = "<group>"; };
 		DDF3395D204B506B007E7CCD /* Mocklook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mocklook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF33960204B506B007E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF33965204B506B007E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				DD43BED8204BDD530094643F /* Controller */,
-				DD43BEDD204BE0510094643F /* Helpers */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -146,14 +147,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		DD43BEDD204BE0510094643F /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				DD43BEDA204BE04B0094643F /* AppointmentManager.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		DDDA3314204D99D1008EEF12 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +161,15 @@
 				DDE37E662061EDCF0037C6A2 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DDE37E682061F4490037C6A2 /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				DDE37E692061F48E0037C6A2 /* AppointmentDataSource.swift */,
+				DD43BEDA204BE04B0094643F /* AppointmentManager.swift */,
+			);
+			path = Appointments;
 			sourceTree = "<group>";
 		};
 		DDF33954204B506B007E7CCD = {
@@ -193,6 +195,7 @@
 		DDF3395F204B506B007E7CCD /* Mocklook */ = {
 			isa = PBXGroup;
 			children = (
+				DDE37E682061F4490037C6A2 /* Appointments */,
 				DDE37E652061EDBA0037C6A2 /* Extensions */,
 				DDF33960204B506B007E7CCD /* AppDelegate.swift */,
 				DDF339A1204B6D7E007E7CCD /* Constants.swift */,
@@ -486,6 +489,7 @@
 				DDF33961204B506B007E7CCD /* AppDelegate.swift in Sources */,
 				DDF339A5204B715B007E7CCD /* CalendarAgendaViewController.swift in Sources */,
 				DD97FC6A204C799100EBE00E /* Appointment.swift in Sources */,
+				DDE37E6A2061F48E0037C6A2 /* AppointmentDataSource.swift in Sources */,
 				DD97FC6D204C7DF800EBE00E /* AppointmentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

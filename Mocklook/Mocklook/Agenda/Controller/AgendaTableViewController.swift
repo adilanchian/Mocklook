@@ -28,12 +28,6 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Generate mock appointments //
-        self.appointmentManager.generateAppointments()
-        
-        // Sort appointments by section //
-        self.appointmentManager.sortAppointments()
-        
         // Setup Table View //
         self.setupTableView()
         
@@ -55,8 +49,10 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
             sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
         }
         
-        if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
-            return self.appointmentManager.sortedAppointments[sectionString]!.count
+        let appointmentCount = self.appointmentManager.getAppointmentsCount(sectionName: sectionString)
+        
+        if appointmentCount != 0 {
+            return appointmentCount
         }
         
         // Need one cell to display "No events" message //
@@ -74,12 +70,9 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
         }
         
         // Get the key from dictionary //
-        if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
-            let appointments = self.appointmentManager.sortedAppointments[sectionString]!
-            cell.addCellData(appointment: appointments[indexPath.row])
-        } else {
-            cell.addCellData(appointment: nil)
-        }
+        let appointmentData = self.appointmentManager.getAppointment(sectionName: sectionString, currentAppointment: indexPath.row)
+        
+        cell.addCellData(appointment: appointmentData)
         
         return cell
     }
@@ -97,7 +90,7 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
             sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
         }
         
-        if self.appointmentManager.sortedAppointments.keys.contains(sectionString) {
+        if self.appointmentManager.hasAppointmentsForSection(sectionName: sectionString) {
             return 80
         }
         
@@ -143,9 +136,8 @@ class AgendaTableViewController: UITableViewController, UITableViewDataSourcePre
             if sectionString.range(of: "Today · ") != nil {
                 sectionString = sectionString.replacingOccurrences(of: "Today · ", with: "")
             }
-            
-            // Get array of appointments //
-            if let appointment = self.appointmentManager.sortedAppointments[sectionString]?[path.row] {
+
+            if let appointment = self.appointmentManager.getAppointment(sectionName: sectionString, currentAppointment: path.row) {
                 
                 // Attempt to get the temperature for the current location //
                 appointment.getTemperature()
